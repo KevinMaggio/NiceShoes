@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home_icon"
+            android:title="Inicio" />
+        <item
+            android:id="@+id/nav_shoes"
+            android:icon="@drawable/zapatilla_icon"
+            android:title="Zapatillas" />
+        <item
+            android:id="@+id/nav_orders"
+            android:icon="@drawable/pedidos_icon"
+            android:title="Mis Pedidos" />
+        <item
+            android:id="@+id/nav_stateAccountFragment"
+            android:icon="@drawable/price"
+            android:title="Estado de Cuenta" />
+    </group>
+</menu>
