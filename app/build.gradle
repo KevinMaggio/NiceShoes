@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.ventazapas"
-        minSdk 26
+        minSdk 21
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -34,6 +34,9 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+    lintOptions {
+        checkReleaseBuilds = false
     }
 }
 
