@@ -1,4 +1,4 @@
-package com.example.ventazapas.ui.estadoCuenta
+package com.example.ventazapas.ui.stateAccount
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

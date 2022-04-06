@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_orders" />
     <fragment
         android:id="@+id/nav_stateAccountFragment"
-        android:name="com.example.ventazapas.ui.estadoCuenta.StateAccountFragment"
+        android:name="com.example.ventazapas.ui.stateAccount.StateAccountFragment"
         android:label="Estado de cuenta"
         tools:layout="@layout/fragment_state_account" />
 </navigation>
