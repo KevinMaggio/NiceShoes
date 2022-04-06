@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/EjerciciosAlkemyAndroid/ventaZapas/app/src/main/res/drawable/item_more_seen.xml" value="0.5166666666666667" />
+        <entry key="..\:/EjerciciosAlkemyAndroid/ventaZapas/app/src/main/res/layout/fragment_home.xml" value="0.4855072463768116" />
+        <entry key="..\:/EjerciciosAlkemyAndroid/ventaZapas/app/src/main/res/layout/item_more_seen.xml" value="0.4855072463768116" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.121875" />
         <entry key="app/src/main/res/drawable/gradiel_login_black.xml" value="0.23385416666666667" />
         <entry key="app/src/main/res/drawable/gradient_red_black.xml" value="0.23385416666666667" />

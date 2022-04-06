@@ -55,9 +55,9 @@ class MainActivity : AppCompatActivity() {
                                 Log.d("succes", account.email.toString())
 
 
-//                                preferences.saveUserEmail(account.email.toString()!!)
-//                                preferences.saveAccessToken(it.result.credential.toString())
-//                                preferences.saveFireBaseAuth(it.result.user?.uid.toString())
+                                preferences.saveUserEmail(account.email.toString()!!)
+                                preferences.saveAccessToken(it.result.credential.toString())
+                                preferences.saveFireBaseAuth(it.result.user?.uid.toString())
                                 //ACCESS_TOKEN= preferences.getAccessToken()
 
 
