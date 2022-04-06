@@ -38,9 +38,6 @@
           app:layout_constraintTop_toBottomOf="@+id/tv_tittle"
           android:layout_margin="15dp"/>
 
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
 
 
 
