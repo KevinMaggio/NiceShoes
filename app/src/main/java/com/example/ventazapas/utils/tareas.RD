@@ -30,3 +30,6 @@ menu -> admin
 
     CERRAR SESION
 
+Tareas :
+1 Armar menu de Cliente y de Admin. y mostrar el correspondiente
+2 crear crear home. ( titulo. / rv con mas vistos / titulo2 rv con promociones / titulo 3

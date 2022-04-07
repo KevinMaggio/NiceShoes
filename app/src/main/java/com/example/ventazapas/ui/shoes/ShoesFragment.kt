@@ -5,9 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.ventazapas.data.model.MockShoes
 import com.example.ventazapas.databinding.FragmentShoesBinding
 
 class ShoesFragment : Fragment() {
+
+    private val shoesViewModel by viewModels<ShoesViewModel>()
 
     lateinit var binding: FragmentShoesBinding
     override fun onCreateView(
@@ -17,6 +21,12 @@ class ShoesFragment : Fragment() {
     ): View {
         binding= FragmentShoesBinding.inflate(inflater,container, false)
 
+
         return binding.root
+    }
+
+    fun initRecyclerView(list : List<MockShoes>){
+        val adapter = ShoesAdapter(list)
+        binding
     }
 }

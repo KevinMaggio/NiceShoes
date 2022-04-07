@@ -34,10 +34,9 @@
           app:layout_constraintEnd_toEndOf="parent"
           android:orientation="horizontal"
           app:layout_constraintStart_toStartOf="parent"
-          tools:listitem="@layout/item_more_seen"
+          tools:listitem="@layout/item_shoes"
           app:layout_constraintTop_toBottomOf="@+id/tv_tittle"
           android:layout_margin="15dp"/>
-
 
 
 

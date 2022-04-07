@@ -3,9 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/EjerciciosAlkemyAndroid/ventaZapas/app/src/main/res/drawable/background_black_radius.xml" value="0.5166666666666667" />
         <entry key="..\:/EjerciciosAlkemyAndroid/ventaZapas/app/src/main/res/drawable/item_more_seen.xml" value="0.5166666666666667" />
-        <entry key="..\:/EjerciciosAlkemyAndroid/ventaZapas/app/src/main/res/layout/fragment_home.xml" value="0.4855072463768116" />
-        <entry key="..\:/EjerciciosAlkemyAndroid/ventaZapas/app/src/main/res/layout/item_more_seen.xml" value="0.4855072463768116" />
+        <entry key="..\:/EjerciciosAlkemyAndroid/ventaZapas/app/src/main/res/layout/activity_main.xml" value="0.478713768115942" />
+        <entry key="..\:/EjerciciosAlkemyAndroid/ventaZapas/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/EjerciciosAlkemyAndroid/ventaZapas/app/src/main/res/layout/fragment_shoes.xml" value="0.278125" />
+        <entry key="..\:/EjerciciosAlkemyAndroid/ventaZapas/app/src/main/res/layout/item_more_seen.xml" value="0.33" />
+        <entry key="..\:/EjerciciosAlkemyAndroid/ventaZapas/app/src/main/res/layout/item_shoes.xml" value="0.24722222222222223" />
         <entry key="..\:/VentaZapas/ventaZapas/app/src/main/res/drawable/splash_screen.xml" value="0.163" />
         <entry key="..\:/VentaZapas/ventaZapas/app/src/main/res/layout/content_splash.xml" value="0.20416666666666666" />
         <entry key="..\:/VentaZapas/ventaZapas/app/src/main/res/layout/fragment_home.xml" value="0.2594995366079703" />
