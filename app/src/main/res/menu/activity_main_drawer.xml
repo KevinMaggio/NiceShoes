@@ -13,7 +13,7 @@
             android:icon="@drawable/zapatilla_icon"
             android:title="Zapatillas" />
         <item
-            android:id="@+id/nav_orders"
+            android:id="@+id/nav_my_orders"
             android:icon="@drawable/pedidos_icon"
             android:title="Mis Pedidos" />
         <item
@@ -24,5 +24,14 @@
             android:id="@+id/nav_favoriteFragment"
             android:icon="@drawable/home_icon"
             android:title="@string/nav_favorite" />
+        <item
+            android:id="@+id/nav_offersFragment"
+            android:icon="@drawable/home_icon"
+            android:title="@string/nav_offers" />
+
+        <item
+            android:id="@+id/nav_purchaseHistoryFragment"
+            android:icon="@drawable/home_icon"
+            android:title="@string/nav_purchase_history" />
     </group>
 </menu>

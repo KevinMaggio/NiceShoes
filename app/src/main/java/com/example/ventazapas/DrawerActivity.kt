@@ -3,7 +3,6 @@ package com.example.ventazapas
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,7 +12,6 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ventazapas.databinding.ActivityDrawerBinding
-import com.example.ventazapas.databinding.NavHeaderDrawerBinding
 
 class DrawerActivity : AppCompatActivity() {
 
@@ -39,9 +37,11 @@ class DrawerActivity : AppCompatActivity() {
             setOf(
                 R.id.nav_home,
                 R.id.nav_shoes,
-                R.id.nav_orders,
+                R.id.nav_my_orders,
                 R.id.nav_stateAccountFragment,
-                R.id.nav_favoriteFragment
+                R.id.nav_favoriteFragment,
+                R.id.nav_offersFragment,
+                R.id.nav_purchaseHistoryFragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -63,9 +63,10 @@ class DrawerActivity : AppCompatActivity() {
 
     fun checkUser(type:String) {
         if(type == "admin") {
+            /** Admin */
             navigationView.menu.findItem(R.id.nav_home).isVisible = false
         }else{
-            /** */
+            /** Client */
             navigationView.menu.findItem(R.id.nav_home).isVisible = false
         }
     }
