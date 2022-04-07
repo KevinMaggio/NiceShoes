@@ -8,24 +8,25 @@ Cliente.
 el cliente tiene que poder ver en el inicio . ofertas. / ultimos vistos / favoritos / filtro por talles / tipo (deportivas street vans)
 
 Menu -> cliente
-    -> zapatillas + filtros ( talle / precio / tipo )
+    -> zapatillas + filtros ( talle / precio / tipo ) ++
     -> favoritos
     -> ofertas
-    -> mis pedidos
+    -> mis pedidos ++
     -> historial de compras
-    -> estado de cuenta
+    -> estado de cuenta ++
     ->
 
     CERRAR SESION
 
 menu -> admin
-    -> agregar zapatilla
-    -> quitar zapatilla
-    -> cambiar precio ( actualizar zapatilla)
-    -> estado de cuenta
+    -> agregar zapatilla (add shoes)
+    -> venta de zapatillas ( sell shoes)
+    -> cambiar precio ( Changeprice)
+    -> estado de cuenta admin( stateAccountAdmin)
+
     -> clientes ( aca se anota el pago o deuda)
-    -> modificar lista promocion
-    -> ver pedidos.
+    -> modificar lista promocion ( PromotionListModify)
+    -> ver pedidos. (ShowOrders)
     ->
 
     CERRAR SESION

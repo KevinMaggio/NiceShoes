@@ -27,4 +27,9 @@
         android:name="com.example.ventazapas.ui.stateAccount.StateAccountFragment"
         android:label="Estado de cuenta"
         tools:layout="@layout/fragment_state_account" />
+    <fragment
+        android:id="@+id/nav_favoriteFragment"
+        android:name="com.example.ventazapas.ui.favorite.FavoriteFragment"
+        android:label="@string/nav_favorite"
+        tools:layout="@layout/fragment_favorite" />
 </navigation>
