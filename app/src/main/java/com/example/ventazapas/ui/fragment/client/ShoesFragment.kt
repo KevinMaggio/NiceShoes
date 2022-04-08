@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.ventazapas.data.model.MockShoes
 import com.example.ventazapas.databinding.FragmentShoesBinding
-import com.example.ventazapas.ui.shoes.ShoesAdapter
-import com.example.ventazapas.ui.shoes.ShoesViewModel
+import com.example.ventazapas.ui.adapter.ShoesAdapter
+import com.example.ventazapas.ui.viewModel.ShoesViewModel
 
 class ShoesFragment : Fragment() {
 
