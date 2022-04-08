@@ -53,6 +53,8 @@ class DrawerActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         navigationView = findViewById<View>(R.id.nav_view) as NavigationView
+
+        checkUser("admin")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

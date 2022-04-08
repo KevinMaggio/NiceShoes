@@ -1,4 +1,4 @@
-package com.example.ventazapas.ui.orders
+package com.example.ventazapas.ui.fragment.client
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -20,11 +20,12 @@ Menu -> cliente
 
 menu -> admin
     -> agregar zapatilla (add shoes)++
-    -> venta de zapatillas ( sell shoes)++ quitar zapatillas o modificar el precio
-    -> cambiar precio ( Changeprice)++
+    -> venta de zapatillas ( sell shoes)++ quitar zapatillas
+    -> cambiar precio ( Changeprice)++ autmento de precio unicamente
     -> estado de cuenta admin( stateAccountAdmin)++
 
-    -> clientes ( aca se anota el pago o deuda) -> ver pedidos. (ShowOrders)// deberian estar juntos
+    -> clientes ( aca se anota el pago o deuda)
+    -> ver pedidos. (ShowOrders)// deberian estar juntos
     -> modificar lista promocion ( PromotionListModify) , anulado , (innecesario)
 
 

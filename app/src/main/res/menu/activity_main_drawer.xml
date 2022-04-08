@@ -47,6 +47,10 @@
             android:id="@+id/nav_changePriceFragment"
             android:icon="@drawable/zapatilla_icon"
             android:title="@string/nav_change_price" />
+        <item
+            android:id="@+id/nav_modifyShoeListFragment"
+            android:icon="@drawable/zapatilla_icon"
+            android:title="@string/nav_modify_shoe_list" />
 
         <item
             android:id="@+id/nav_stateAccountAdminFragment"

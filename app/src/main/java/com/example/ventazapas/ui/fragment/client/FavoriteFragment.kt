@@ -1,4 +1,4 @@
-package com.example.ventazapas.ui.favorite
+package com.example.ventazapas.ui.fragment.client
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

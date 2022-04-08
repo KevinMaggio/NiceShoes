@@ -1,4 +1,4 @@
-package com.example.ventazapas.ui
+package com.example.ventazapas.ui.fragment.client
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [StateAccountAdminFragment.newInstance] factory method to
+ * Use the [OffersFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class StateAccountAdminFragment : Fragment() {
+class OffersFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -35,7 +35,7 @@ class StateAccountAdminFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_state_account_admin, container, false)
+        return inflater.inflate(R.layout.fragment_offers, container, false)
     }
 
     companion object {
@@ -45,12 +45,12 @@ class StateAccountAdminFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment StateAccountAdminFragment.
+         * @return A new instance of fragment OffersFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            StateAccountAdminFragment().apply {
+            OffersFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
