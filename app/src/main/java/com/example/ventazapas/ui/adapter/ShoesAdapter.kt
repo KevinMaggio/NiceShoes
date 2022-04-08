@@ -1,4 +1,4 @@
-package com.example.ventazapas.ui.shoes
+package com.example.ventazapas.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View

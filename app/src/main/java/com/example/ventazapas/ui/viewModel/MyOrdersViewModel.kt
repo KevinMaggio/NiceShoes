@@ -1,4 +1,4 @@
-package com.example.ventazapas.ui.orders
+package com.example.ventazapas.ui.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
