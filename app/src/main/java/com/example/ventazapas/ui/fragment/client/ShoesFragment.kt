@@ -1,4 +1,4 @@
-package com.example.ventazapas.ui.shoes
+package com.example.ventazapas.ui.fragment.client
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.ventazapas.data.model.MockShoes
 import com.example.ventazapas.databinding.FragmentShoesBinding
+import com.example.ventazapas.ui.shoes.ShoesAdapter
+import com.example.ventazapas.ui.shoes.ShoesViewModel
 
 class ShoesFragment : Fragment() {
 

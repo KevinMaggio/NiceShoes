@@ -3,7 +3,6 @@ package com.example.ventazapas
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,7 +12,6 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ventazapas.databinding.ActivityDrawerBinding
-import com.example.ventazapas.databinding.NavHeaderDrawerBinding
 
 class DrawerActivity : AppCompatActivity() {
 
@@ -37,17 +35,26 @@ class DrawerActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home,
-                R.id.nav_shoes,
-                R.id.nav_orders,
+                R.id.nav_home_fragment,
+                R.id.nav_shoes_fragment,
+                R.id.nav_my_orders,
                 R.id.nav_stateAccountFragment,
-                R.id.nav_favoriteFragment
+                R.id.nav_favoriteFragment,
+                R.id.nav_offersFragment,
+                R.id.nav_purchaseHistoryFragment,
+                R.id.nav_addShoesFragment,
+                R.id.nav_sellShoesFragment,
+                R.id.nav_changePriceFragment,
+                R.id.nav_stateAccountAdminFragment,
+                R.id.nav_clientFragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
         navigationView = findViewById<View>(R.id.nav_view) as NavigationView
+
+        checkUser("admin")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -61,12 +68,24 @@ class DrawerActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    fun checkUser(type:String) {
-        if(type == "admin") {
-            navigationView.menu.findItem(R.id.nav_home).isVisible = false
-        }else{
-            /** */
-            navigationView.menu.findItem(R.id.nav_home).isVisible = false
+    fun checkUser(type: String) {
+        if ( type == "admin") {
+            /** Admin */
+            navigationView.menu.findItem(R.id.nav_home_fragment).isVisible = true
+            navigationView.menu.findItem(R.id.nav_shoes_fragment).isVisible= false
+            navigationView.menu.findItem(R.id.nav_favoriteFragment).isVisible= false
+            navigationView.menu.findItem(R.id.nav_offersFragment).isVisible= false
+            navigationView.menu.findItem(R.id.nav_my_orders).isVisible= false
+            navigationView.menu.findItem(R.id.nav_purchaseHistoryFragment).isVisible= false
+            navigationView.menu.findItem(R.id.nav_stateAccountFragment).isVisible= false
+        } else {
+            /** Client */
+            navigationView.menu.findItem(R.id.nav_home_fragment).isVisible = true
+            navigationView.menu.findItem(R.id.nav_addShoesFragment).isVisible = false
+            navigationView.menu.findItem(R.id.nav_sellShoesFragment).isVisible = false
+            navigationView.menu.findItem(R.id.nav_changePriceFragment).isVisible = false
+            navigationView.menu.findItem(R.id.nav_stateAccountAdminFragment).isVisible = false
+            navigationView.menu.findItem(R.id.nav_clientFragment).isVisible = false
         }
     }
 }

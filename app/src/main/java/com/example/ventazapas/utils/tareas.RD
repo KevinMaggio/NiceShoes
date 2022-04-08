@@ -9,28 +9,29 @@ el cliente tiene que poder ver en el inicio . ofertas. / ultimos vistos / favori
 
 Menu -> cliente
     -> zapatillas + filtros ( talle / precio / tipo ) ++
-    -> favoritos
-    -> ofertas
+    -> favoritos++
+    -> ofertas++
     -> mis pedidos ++
-    -> historial de compras
+    -> historial de compras++
     -> estado de cuenta ++
     ->
 
     CERRAR SESION
 
 menu -> admin
-    -> agregar zapatilla (add shoes)
-    -> venta de zapatillas ( sell shoes)
-    -> cambiar precio ( Changeprice)
-    -> estado de cuenta admin( stateAccountAdmin)
+    -> agregar zapatilla (add shoes)++
+    -> venta de zapatillas ( sell shoes)++ quitar zapatillas
+    -> cambiar precio ( Changeprice)++ autmento de precio unicamente
+    -> estado de cuenta admin( stateAccountAdmin)++
 
     -> clientes ( aca se anota el pago o deuda)
-    -> modificar lista promocion ( PromotionListModify)
-    -> ver pedidos. (ShowOrders)
-    ->
+    -> ver pedidos. (ShowOrders)// deberian estar juntos
+    -> modificar lista promocion ( PromotionListModify) , anulado , (innecesario)
+
+
 
     CERRAR SESION
 
 Tareas :
 1 Armar menu de Cliente y de Admin. y mostrar el correspondiente
-2 crear crear home. ( titulo. / rv con mas vistos / titulo2 rv con promociones / titulo 3
+2 crear  home. ( titulo. / rv con mas vistos / titulo2 rv con promociones / titulo 3
