@@ -30,4 +30,9 @@
     <string name="nav_shoes">Zapatillas</string>
     <string name="nav_my_orders">Mis pedidos</string>
     <string name="nav_state_account">Estado de cuenta</string>
+    <string name="nav_add_shoes">Agregar zapatillas</string>
+    <string name="nav_sell_shoes">Venta de zapatillas</string>
+    <string name="nav_change_price">Cambiar precios</string>
+    <string name="nav_state_accountAdmin">Estados de cuentas</string>
+    <string name="nav_client">Clientes</string>
 </resources>
