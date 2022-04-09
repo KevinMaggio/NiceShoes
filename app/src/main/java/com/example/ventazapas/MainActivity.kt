@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.ventazapas.AppNiceShoes.Companion.preferences
+import com.example.ventazapas.data.fireStore.FireStoreImp
 import com.example.ventazapas.databinding.ActivityMainBinding
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -17,6 +18,8 @@ import com.google.firebase.auth.GoogleAuthProvider
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
+
+    val prueba = FireStoreImp()
 
     private val GOOGLE_SIGN = 100
     lateinit var binding : ActivityMainBinding
@@ -53,26 +56,21 @@ class MainActivity : AppCompatActivity() {
                     FirebaseAuth.getInstance().signInWithCredential(credential)
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
-                                //move and send email, to next activity
                                 Log.d("succes", account.email.toString())
 
+                                preferences.saveUserEmail(account.email.toString())
 
-                                preferences.saveUserEmail(account.email.toString()!!)
-                                preferences.saveAccessToken(it.result.credential.toString())
-                                preferences.saveFireBaseAuth(it.result.user?.uid.toString())
-                                //ACCESS_TOKEN= preferences.getAccessToken()
+                                prueba.getUser(preferences.getUserEmail()).observe(this,{
+                                    if (it.name!="empty") {
+                                        // salvar todos los datos importante en variables globales
 
+                                        startActivity(Intent(this, DrawerActivity::class.java))
+                                    }else{
+                                        // crear la activity omboarding
+                                        Toast.makeText(this,"enviar al omboarding",Toast.LENGTH_LONG).show()
+                                    }
+                                })
 
-
-                                startActivity(Intent(this, DrawerActivity::class.java))
-                               // userViewModel.userLogin(preferences.getFireBaseAuth(), preferences.getAccessToken())
-
-                                Log.d("id credential",it.result.credential.toString())
-                                Log.d("id uid", it.result.user?.uid.toString())
-                                Log.d("idToken google",account.idToken.toString())
-                                Log.d("id google",account.id.toString())
-                                Log.d("id fireBase userName",it.result.additionalUserInfo?.username.toString())
-                                Log.d("id",it.result.additionalUserInfo?.providerId.toString())
 
                             } else {
                                 Toast.makeText(this, "Error login", Toast.LENGTH_LONG).show()
@@ -83,8 +81,5 @@ class MainActivity : AppCompatActivity() {
                 Log.d("error", "Internet Conection")
             }
         }
-    }
-    fun asd(){
-
     }
 }
