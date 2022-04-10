@@ -7,29 +7,27 @@ import android.util.Log
 import android.widget.Toast
 import com.example.ventazapas.AppNiceShoes.Companion.preferences
 import com.example.ventazapas.data.fireStore.FireStoreImp
-import com.example.ventazapas.databinding.ActivityMainBinding
-import com.google.android.gms.auth.api.Auth
+import com.example.ventazapas.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import java.lang.Exception
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     val prueba = FireStoreImp()
 
     private val GOOGLE_SIGN = 100
-    lateinit var binding : ActivityMainBinding
+    lateinit var binding : ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityMainBinding.inflate(layoutInflater)
+        binding= ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btLoginGoogle.setOnClickListener {
+        binding.btLogin.setOnClickListener {
             loginToGoogle()
         }
     }

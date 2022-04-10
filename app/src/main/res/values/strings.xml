@@ -36,4 +36,8 @@
     <string name="nav_state_accountAdmin">Estados de cuentas</string>
     <string name="nav_client">Clientes</string>
     <string name="nav_modify_shoe_list">Modificar precios</string>
+    <string name="bt_log_out_menu">CERRAR SESION</string>
+    <!-- TODO: STRING LOGIN_LAYOUT  -->
+    <string name="login_login">Iniciar sesion</string>
+    <string name="login_support">En caso de problemas con la app, comunicarse con <b>soporte</b></string>
 </resources>

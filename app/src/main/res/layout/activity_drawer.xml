@@ -23,13 +23,15 @@
         app:headerLayout="@layout/nav_header_drawer"
         app:menu="@menu/activity_main_drawer">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_log_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="bottom"
-            />
+            android:layout_gravity="center|bottom"
+            android:background="@drawable/gradiel_botton_red"
+            android:padding="15dp"
+            android:text="@string/bt_log_out_menu" />
     </com.google.android.material.navigation.NavigationView>
-
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
