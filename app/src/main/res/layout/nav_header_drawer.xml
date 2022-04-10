@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:scaleType="fitXY"
-        android:background="@drawable/logo_menu"/>
+        android:background="@drawable/logo_nice_shoes"/>
 
     <TextView
         android:layout_width="match_parent"

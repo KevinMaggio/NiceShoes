@@ -13,10 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VentaZapas">
         <activity
-            android:name=".OmboardingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_splash"
             android:theme="@style/Theme.VentaZapas.NoActionBar" />
