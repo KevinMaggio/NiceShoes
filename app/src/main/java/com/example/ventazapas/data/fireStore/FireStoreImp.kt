@@ -120,6 +120,10 @@ class FireStoreImp : FireStoreService {
         return liveShoes
     }
 
+    override fun getAllShoes(): MutableLiveData<List<ResponseShoes>> {
+        TODO("Not yet implemented")
+    }
+
     override fun editShoes(): MutableLiveData<ResponseShoes> {
         TODO("Not yet implemented")
     }

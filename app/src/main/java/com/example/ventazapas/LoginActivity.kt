@@ -63,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
                                 preferences.saveUserEmail(account.email.toString())
                                 EMAIL= account.email.toString()
                                 NAME=account.givenName.toString()
-                                
+
                                 loginFireStore(preferences.getUserEmail())
 
                             } else {
@@ -81,8 +81,6 @@ class LoginActivity : AppCompatActivity() {
         prueba.getUser(email).observe(this,{
             if (it.name!="empty") {
                 OBJECT_USER = it
-
-                Toast.makeText(this, OBJECT_USER.toString(), Toast.LENGTH_LONG).show()
                 startActivity(Intent(this, DrawerActivity::class.java))
                 finish()
             }else{
