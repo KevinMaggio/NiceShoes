@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VentaZapas">
         <activity
+            android:name=".OmboardingActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false"
             android:label="@string/title_activity_splash"
@@ -24,8 +27,8 @@
             android:theme="@style/Theme.VentaZapas.NoActionBar" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
