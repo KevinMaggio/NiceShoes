@@ -58,12 +58,14 @@ class LoginActivity : AppCompatActivity() {
                             if (it.isSuccessful) {
                                 Log.d("succes", account.email.toString())
 
+
                                 preferences.saveUserEmail(account.email.toString())
                                 EMAIL= account.email.toString()
                                 NAME=account.givenName.toString()
 
                                 prueba.getUser(preferences.getUserEmail()).observe(this,{
                                     if (it.name!="empty") {
+                                        //mapear objeto entero
                                         startActivity(Intent(this, DrawerActivity::class.java))
                                         finish()
                                     }else{
