@@ -11,6 +11,8 @@ class FireStoreImp : FireStoreService {
     private val fireStore = FirebaseFirestore.getInstance()
     private val liveUser = MutableLiveData<ResponseUser>()
     private val liveShoes = MutableLiveData<ResponseShoes>()
+    private val liveDelete = MutableLiveData<Boolean>()
+    private val liveAllShoes= MutableLiveData<List<ResponseShoes>>()
 
     override fun addUser(
         title: String,
@@ -98,16 +100,13 @@ class FireStoreImp : FireStoreService {
         return liveUser
     }
 
-    override fun editUser(): MutableLiveData<ResponseUser> {
-        TODO("Not yet implemented")
-    }
 
     override fun addShoes(): MutableLiveData<ResponseShoes> {
         TODO("Not yet implemented")
     }
 
-    override fun getShoesById(name: String,id:String,code:String ): MutableLiveData<ResponseShoes> {
-        fireStore.collection("shoes").document(name).collection(code).document(id).get()
+    override fun getShoesById(id:String ): MutableLiveData<ResponseShoes> {
+        fireStore.collection("shoes").document(id).get()
             .addOnSuccessListener {
 
                 if (!it.data.isNullOrEmpty()){
@@ -121,10 +120,22 @@ class FireStoreImp : FireStoreService {
     }
 
     override fun getAllShoes(): MutableLiveData<List<ResponseShoes>> {
-        TODO("Not yet implemented")
+        fireStore.collection("shoes").get()
+            .addOnSuccessListener {
+
+                val list = mutableListOf<ResponseShoes>()
+                for (i in it.documents){
+                    list.add(ResponseShoes(i.get("code").toString()))
+
+                }
+            }
     }
 
-    override fun editShoes(): MutableLiveData<ResponseShoes> {
-        TODO("Not yet implemented")
+    override fun deleteShoes(id:String): MutableLiveData<Boolean> {
+        fireStore.collection("shoes").document(id)
+            .delete()
+            .addOnSuccessListener { liveDelete.postValue(true) }
+            .addOnFailureListener { liveDelete.postValue(false) }
+        return liveDelete
     }
 }

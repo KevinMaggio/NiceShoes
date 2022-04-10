@@ -24,13 +24,11 @@ interface FireStoreService {
 
     fun getUser(title: String): MutableLiveData<ResponseUser>
 
-    fun editUser(): MutableLiveData<ResponseUser>
-
     fun addShoes(): MutableLiveData<ResponseShoes>
 
-    fun getShoesById(name: String,id:String,code:String): MutableLiveData<ResponseShoes>
+    fun getShoesById(id:String): MutableLiveData<ResponseShoes>
 
     fun getAllShoes():MutableLiveData<List<ResponseShoes>>
 
-    fun editShoes(): MutableLiveData<ResponseShoes>
+    fun deleteShoes(id:String): MutableLiveData<Boolean>
 }
