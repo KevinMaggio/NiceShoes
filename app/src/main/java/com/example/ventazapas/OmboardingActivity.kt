@@ -1,0 +1,44 @@
+package com.example.ventazapas
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.example.ventazapas.data.fireStore.FireStoreImp
+import com.example.ventazapas.databinding.ActivityOmboardingBinding
+import com.example.ventazapas.utils.Globals.EMAIL
+import com.example.ventazapas.utils.Globals.NAME
+
+class OmboardingActivity : AppCompatActivity() {
+
+
+    val prueba = FireStoreImp()
+
+    private lateinit var binding: ActivityOmboardingBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityOmboardingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.btRegister.setOnClickListener {
+            prueba.addUser(
+                EMAIL,
+                0,
+                binding.etDirection.toString(),
+                binding.etDni.toString(),
+                EMAIL,
+                listOf(),
+                0,
+                NAME,
+                binding.etWhatsapp.toString(),
+                listOf(),
+                listOf(),
+                0,
+                "client"
+            )
+        }
+        binding.btCancel.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+    }
+}

@@ -8,6 +8,8 @@ import android.widget.Toast
 import com.example.ventazapas.AppNiceShoes.Companion.preferences
 import com.example.ventazapas.data.fireStore.FireStoreImp
 import com.example.ventazapas.databinding.ActivityLoginBinding
+import com.example.ventazapas.utils.Globals.EMAIL
+import com.example.ventazapas.utils.Globals.NAME
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -57,15 +59,16 @@ class LoginActivity : AppCompatActivity() {
                                 Log.d("succes", account.email.toString())
 
                                 preferences.saveUserEmail(account.email.toString())
+                                EMAIL= account.email.toString()
+                                NAME=account.givenName.toString()
 
                                 prueba.getUser(preferences.getUserEmail()).observe(this,{
                                     if (it.name!="empty") {
-                                        // salvar todos los datos importante en variables globales
-
                                         startActivity(Intent(this, DrawerActivity::class.java))
+                                        finish()
                                     }else{
-                                        // crear la activity omboarding
-                                        Toast.makeText(this,"enviar al omboarding",Toast.LENGTH_LONG).show()
+                                        startActivity(Intent(this, OmboardingActivity::class.java))
+                                        finish()
                                     }
                                 })
 
