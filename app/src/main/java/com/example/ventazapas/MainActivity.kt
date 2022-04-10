@@ -84,7 +84,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    fun asd(){
-
-    }
 }
