@@ -7,6 +7,7 @@ import com.example.ventazapas.data.fireStore.FireStoreImp
 import com.example.ventazapas.databinding.ActivityOmboardingBinding
 import com.example.ventazapas.utils.Globals.EMAIL
 import com.example.ventazapas.utils.Globals.NAME
+import com.example.ventazapas.utils.Globals.OBJECT_USER
 
 class OmboardingActivity : AppCompatActivity() {
 
@@ -23,18 +24,23 @@ class OmboardingActivity : AppCompatActivity() {
             prueba.addUser(
                 EMAIL,
                 0,
-                binding.etDirection.toString(),
-                binding.etDni.toString(),
+                binding.etDirection.text.toString(),
+                binding.etDni.text.toString(),
                 EMAIL,
                 listOf(),
                 0,
                 NAME,
-                binding.etWhatsapp.toString(),
+                binding.etWhatsapp.text.toString(),
                 listOf(),
                 listOf(),
                 0,
                 "client"
             )
+            prueba.getUser(EMAIL).observe(this,{
+                OBJECT_USER= it
+                startActivity(Intent(this,DrawerActivity::class.java))
+                finish()
+            })
         }
         binding.btCancel.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))

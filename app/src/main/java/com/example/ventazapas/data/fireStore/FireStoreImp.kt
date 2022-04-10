@@ -10,6 +10,7 @@ class FireStoreImp : FireStoreService {
 
     private val fireStore = FirebaseFirestore.getInstance()
     private val liveUser = MutableLiveData<ResponseUser>()
+    private val liveShoes = MutableLiveData<ResponseShoes>()
 
     override fun addUser(
         title: String,
@@ -71,7 +72,7 @@ class FireStoreImp : FireStoreService {
                         it.get("type").toString()
                     )
                 )
-            }else{
+            } else {
                 liveUser.postValue(
                     ResponseUser(
                         0,
@@ -91,7 +92,7 @@ class FireStoreImp : FireStoreService {
             }
 
         }.addOnFailureListener {
-            Log.d("res","error")
+            Log.d("res", "error")
 
         }
         return liveUser
@@ -105,8 +106,18 @@ class FireStoreImp : FireStoreService {
         TODO("Not yet implemented")
     }
 
-    override fun getShoes(): MutableLiveData<ResponseShoes> {
-        TODO("Not yet implemented")
+    override fun getShoesById(name: String,id:String,code:String ): MutableLiveData<ResponseShoes> {
+        fireStore.collection("shoes").document(name).collection(code).document(id).get()
+            .addOnSuccessListener {
+
+                if (!it.data.isNullOrEmpty()){
+                    //mapear objeto con la respuesta en liveData
+                }else{
+                    //mockear objeto con la respuesta en liveData
+                }
+
+            }
+        return liveShoes
     }
 
     override fun editShoes(): MutableLiveData<ResponseShoes> {

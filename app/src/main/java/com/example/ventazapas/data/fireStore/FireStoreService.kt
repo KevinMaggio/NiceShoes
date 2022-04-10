@@ -28,7 +28,9 @@ interface FireStoreService {
 
     fun addShoes(): MutableLiveData<ResponseShoes>
 
-    fun getShoes(): MutableLiveData<ResponseShoes>
+    fun getShoesById(name: String,id:String,code:String): MutableLiveData<ResponseShoes>
+
+    fun getAllShoes():MutableLiveData<List<ResponseShoes>>
 
     fun editShoes(): MutableLiveData<ResponseShoes>
 }
