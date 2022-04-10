@@ -10,6 +10,7 @@ import com.example.ventazapas.data.fireStore.FireStoreImp
 import com.example.ventazapas.databinding.ActivityLoginBinding
 import com.example.ventazapas.utils.Globals.EMAIL
 import com.example.ventazapas.utils.Globals.NAME
+import com.example.ventazapas.utils.Globals.OBJECT_USER
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -62,16 +63,7 @@ class LoginActivity : AppCompatActivity() {
                                 EMAIL= account.email.toString()
                                 NAME=account.givenName.toString()
 
-                                prueba.getUser(preferences.getUserEmail()).observe(this,{
-                                    if (it.name!="empty") {
-                                        startActivity(Intent(this, DrawerActivity::class.java))
-                                        finish()
-                                    }else{
-                                        startActivity(Intent(this, OmboardingActivity::class.java))
-                                        finish()
-                                    }
-                                })
-
+                                loginFireStore(preferences.getUserEmail())
 
                             } else {
                                 Toast.makeText(this, "Error login", Toast.LENGTH_LONG).show()
@@ -82,5 +74,21 @@ class LoginActivity : AppCompatActivity() {
                 Log.d("error", "Internet Conection")
             }
         }
+    }
+
+    private fun loginFireStore(email:String){
+        prueba.getUser(email).observe(this,{
+            if (it.name!="empty") {
+                OBJECT_USER = it
+
+                Toast.makeText(this, OBJECT_USER.toString(), Toast.LENGTH_LONG).show()
+                startActivity(Intent(this, DrawerActivity::class.java))
+                finish()
+            }else{
+                startActivity(Intent(this, OmboardingActivity::class.java))
+                finish()
+            }
+        })
+
     }
 }
