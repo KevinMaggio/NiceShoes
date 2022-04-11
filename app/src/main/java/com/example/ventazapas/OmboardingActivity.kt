@@ -12,7 +12,7 @@ import com.example.ventazapas.utils.Globals.OBJECT_USER
 class OmboardingActivity : AppCompatActivity() {
 
 
-    val prueba = FireStoreImp()
+    private val prueba = FireStoreImp()
 
     private lateinit var binding: ActivityOmboardingBinding
     override fun onCreate(savedInstanceState: Bundle?) {

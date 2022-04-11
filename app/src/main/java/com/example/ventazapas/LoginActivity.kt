@@ -31,7 +31,13 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btLogin.setOnClickListener {
-            loginToGoogle()
+            //loginToGoogle()
+
+            //mock
+            EMAIL= "kevinmaggio57@gmail.com"
+            NAME = "usuario test"
+            loginFireStore(EMAIL)
+
         }
     }
 
@@ -78,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginFireStore(email:String){
         prueba.getUser(email).observe(this,{
-            if (it.name!="empty") {
+            if (it.name != "empty") {
                 OBJECT_USER = it
                 startActivity(Intent(this, DrawerActivity::class.java))
                 finish()

@@ -1,16 +1,16 @@
 package com.example.ventazapas.data.model
 
 data class ResponseUser(
-    val debt: Int,
-    val direction: String,
-    val dni: String,
-    val email: String,
-    val favorite: List<String>,
-    val id_edit: Int,
-    val name: String,
-    val number: String,
-    val orders: List<String>,
-    val shopping: List<String>,
-    val state_account: Int,
-    val type: String
+    var debt: Int,
+    var direction: String,
+    var dni: String,
+    var email: String,
+    var favorite: List<String>,
+    var id_edit: Int,
+    var name: String,
+    var number: String,
+    var orders: List<String>,
+    var shopping: List<String>,
+    var state_account: Int,
+    var type: String
 )
