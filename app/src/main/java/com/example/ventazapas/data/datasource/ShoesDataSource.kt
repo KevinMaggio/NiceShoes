@@ -1,7 +1,10 @@
 package com.example.ventazapas.data.datasource
 
+import androidx.lifecycle.MutableLiveData
+import com.example.ventazapas.data.fireStore.FireStoreImp
 import com.example.ventazapas.data.model.Gender
 import com.example.ventazapas.data.model.MockShoes
+import com.example.ventazapas.data.model.ResponseShoes
 
 class ShoesDataSource  {
 
@@ -71,6 +74,4 @@ class ShoesDataSource  {
             )
         )
     }
-
-
 }

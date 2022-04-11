@@ -10,7 +10,7 @@ class ShoesViewModel : ViewModel() {
     val shoesRepository = ShoesRepository()
     val listMockShoes = MutableLiveData <List<MockShoes>>()
 
-    fun getMockShoes(){
+    fun getMockShoe(){
         listMockShoes.value= shoesRepository.getMockShoes()
     }
 
