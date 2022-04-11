@@ -94,7 +94,7 @@ class AddShoesFragment : Fragment() {
             OBJECT_USER.state_account,
             OBJECT_USER.type)
 
-        prueba.getUser(OBJECT_USER.email).observe(this,{
+        prueba.getUser(OBJECT_USER.email).observe(viewLifecycleOwner,{
             OBJECT_USER.id_edit = it.id_edit
         })
         return OBJECT_USER.id_edit

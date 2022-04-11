@@ -15,7 +15,11 @@
         android:id="@+id/nav_shoes_fragment"
         android:name="com.example.ventazapas.ui.fragment.client.ShoesFragment"
         android:label="@string/nav_shoes"
-        tools:layout="@layout/fragment_shoes" />
+        tools:layout="@layout/fragment_shoes" >
+        <action
+            android:id="@+id/action_nav_shoes_fragment_to_detailsShoesFragment"
+            app:destination="@id/detailsShoesFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_my_orders"
@@ -72,4 +76,9 @@
         android:name="com.example.ventazapas.ui.fragment.admin.ModifyShoeListFragment"
         android:label="@string/nav_modify_shoe_list"
         tools:layout="@layout/fragment_modify_shoe_list" />
+    <fragment
+        android:id="@+id/detailsShoesFragment"
+        android:name="com.example.ventazapas.ui.fragment.client.DetailsShoesFragment"
+        android:label="fragment_details_shoes"
+        tools:layout="@layout/fragment_details_shoes" />
 </navigation>

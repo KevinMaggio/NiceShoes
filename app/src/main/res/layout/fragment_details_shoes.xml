@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
-    android:background="@drawable/background_black_radius">
+    android:background="@drawable/background_black_radius"
+    tools:context="ui.fragment.client.DetailsShoesFragment">
 
     <ImageView
         android:id="@+id/iv_more_seen"
