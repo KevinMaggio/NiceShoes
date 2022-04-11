@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.ventazapas.data.model.ResponseShoes
 import com.example.ventazapas.data.model.ResponseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 
 class FireStoreImp : FireStoreService {
 

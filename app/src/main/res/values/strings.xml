@@ -27,15 +27,15 @@
     <string name="nav_favorite">Favoritos</string>
     <string name="nav_offers">Ofertas</string>
     <string name="nav_purchase_history">Historial de compras</string>
-    <string name="nav_shoes">Zapatillas</string>
+    <string name="nav_shoes">Calzados</string>
     <string name="nav_my_orders">Mis pedidos</string>
     <string name="nav_state_account">Estado de cuenta</string>
-    <string name="nav_add_shoes">Agregar zapatillas</string>
-    <string name="nav_sell_shoes">Venta de zapatillas</string>
+    <string name="nav_add_shoes">Agregar Calzados</string>
+    <string name="nav_sell_shoes">Venta de Calzados</string>
     <string name="nav_change_price">Cambiar precios</string>
-    <string name="nav_state_accountAdmin">Estados de cuentas</string>
+    <string name="nav_state_accountAdmin">Estados de cuenta</string>
     <string name="nav_client">Clientes</string>
-    <string name="nav_modify_shoe_list">Modificar precios</string>
+    <string name="nav_modify_shoe_list">Promociones</string>
     <string name="omboarding_tv_title">Ups! vemos que es la primera vez que ingresas!!, necesitaremos pedirte algunos datos mas... \n Por favor rellene los campos por unica vez y luego presione en registrar</string>
     <string name="bt_log_out_menu">CERRAR SESION</string>
     <!-- TODO: STRING LOGIN_LAYOUT  -->
