@@ -1,5 +1,6 @@
 package com.example.ventazapas
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
@@ -11,7 +12,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ventazapas.AppNiceShoes.Companion.preferences
 import com.example.ventazapas.databinding.ActivityDrawerBinding
+import com.example.ventazapas.utils.Globals.OBJECT_USER
 
 class DrawerActivity : AppCompatActivity() {
 
@@ -54,7 +57,12 @@ class DrawerActivity : AppCompatActivity() {
 
         navigationView = findViewById<View>(R.id.nav_view) as NavigationView
 
-        checkUser("admin")
+        checkUser(OBJECT_USER.type)
+        binding.btLogOut.setOnClickListener {
+            preferences.clear()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

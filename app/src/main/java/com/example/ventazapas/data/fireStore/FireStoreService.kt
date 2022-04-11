@@ -12,23 +12,37 @@ interface FireStoreService {
         direction: String,
         dni: String,
         email: String,
-        favorite: List<Int>,
+        favorite: List<String>,
         idEdit: Int,
         name: String,
         number: String,
-        orders: List<Int>,
-        shopping: List<Int>,
+        orders: List<String>,
+        shopping: List<String>,
         state_account: Int,
         type: String
     ): String
 
     fun getUser(title: String): MutableLiveData<ResponseUser>
 
-    fun editUser(): MutableLiveData<ResponseUser>
+    fun addShoes(
+        code: String,
+        color: String,
+        description: String,
+        discount_rate: String,
+        gender: String,
+        group: String,
+        id: String,
+        image: List<String>,
+        name: String,
+        offer_price: Int,
+        price: Int,
+        state_offer: Boolean,
+        waist: String
+    )
 
-    fun addShoes(): MutableLiveData<ResponseShoes>
+    fun getShoesById(id: String): MutableLiveData<ResponseShoes>
 
-    fun getShoes(): MutableLiveData<ResponseShoes>
+    fun getAllShoes(): MutableLiveData<List<ResponseShoes>>
 
-    fun editShoes(): MutableLiveData<ResponseShoes>
+    fun deleteShoes(id: String): MutableLiveData<Boolean>
 }
