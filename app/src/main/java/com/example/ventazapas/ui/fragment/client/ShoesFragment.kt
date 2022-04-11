@@ -68,7 +68,7 @@ class ShoesFragment : Fragment() {
                             )
                         }
                         "Precio hasta:" -> {
-                            binding.filter2.isVisible= true
+                            binding.filter2.isVisible = true
                             list1 = listOf("10000", "7500", "5000", "2500")
                             binding.filter2.adapter = ArrayAdapter(
                                 requireContext(),
@@ -78,6 +78,7 @@ class ShoesFragment : Fragment() {
                         }
                     }
                 }
+
                 override fun onNothingSelected(p0: AdapterView<*>?) {
                     TODO("Not yet implemented")
                 }
@@ -88,6 +89,7 @@ class ShoesFragment : Fragment() {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     temp1 = p0?.getItemAtPosition(p2).toString()
                 }
+
                 override fun onNothingSelected(p0: AdapterView<*>?) {
                     TODO("Not yet implemented")
                 }
@@ -95,7 +97,7 @@ class ShoesFragment : Fragment() {
         return binding.root
     }
 
-    fun initRecyclerView(list: List<ResponseShoes>) {
+    private fun initRecyclerView(list: List<ResponseShoes>) {
         val adapter = ShoesAdapter(list)
         binding.rvShoes.adapter = adapter
         adapter.setOnClickListener(object : ShoesAdapter.OnClickListener {
