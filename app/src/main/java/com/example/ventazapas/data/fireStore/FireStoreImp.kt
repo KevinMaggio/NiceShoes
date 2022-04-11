@@ -1,19 +1,32 @@
 package com.example.ventazapas.data.fireStore
 
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.ventazapas.data.model.ResponseShoes
 import com.example.ventazapas.data.model.ResponseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
+
+import com.google.android.gms.tasks.OnSuccessListener
+
+import androidx.annotation.NonNull
+
+import com.google.android.gms.tasks.OnFailureListener
+import java.io.File
+
 
 class FireStoreImp : FireStoreService {
-
+    val mStorage= FirebaseStorage.getInstance().getReference()
     private val fireStore = FirebaseFirestore.getInstance()
     private val liveUser = MutableLiveData<ResponseUser>()
     private val liveShoes = MutableLiveData<ResponseShoes>()
     private val liveDelete = MutableLiveData<Boolean>()
     private val liveAllShoes = MutableLiveData<List<ResponseShoes>>()
+    private val liveImage= MutableLiveData<String>()
 
     override fun addUser(
         title: String,
@@ -218,4 +231,18 @@ class FireStoreImp : FireStoreService {
             .addOnFailureListener { liveDelete.postValue(false) }
         return liveDelete
     }
+
+        fun getImage(image: Uri): MutableLiveData<String> {
+        val FilePath: StorageReference =
+            mStorage.child("Fotos")!!.child(image.getLastPathSegment()!!)
+        image.let {  FilePath.putFile(it)}
+            ?.addOnSuccessListener { //Esto seria para descargar su token de enlace y poder acceder a ella
+                //Si no lo quieres poner no hace falta
+                FilePath.downloadUrl.addOnSuccessListener {
+                    liveImage.postValue(it.toString())
+                }
+            }
+            return liveImage
+    }
+
 }
