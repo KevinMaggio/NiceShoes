@@ -16,17 +16,18 @@ import com.google.android.gms.tasks.OnSuccessListener
 import androidx.annotation.NonNull
 
 import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.Task
 import java.io.File
 
 
 class FireStoreImp : FireStoreService {
-    val mStorage= FirebaseStorage.getInstance().getReference()
+    val mStorage = FirebaseStorage.getInstance().getReference()
     private val fireStore = FirebaseFirestore.getInstance()
     private val liveUser = MutableLiveData<ResponseUser>()
     private val liveShoes = MutableLiveData<ResponseShoes>()
     private val liveDelete = MutableLiveData<Boolean>()
     private val liveAllShoes = MutableLiveData<List<ResponseShoes>>()
-    private val liveImage= MutableLiveData<String>()
+    private val liveImage = MutableLiveData<String>()
 
     override fun addUser(
         title: String,
@@ -232,17 +233,18 @@ class FireStoreImp : FireStoreService {
         return liveDelete
     }
 
-        fun getImage(image: Uri): MutableLiveData<String> {
+    fun getImage(image: Uri): MutableLiveData<String> {
         val FilePath: StorageReference =
-            mStorage.child("Fotos")!!.child(image.getLastPathSegment()!!)
-        image.let {  FilePath.putFile(it)}
+            mStorage.child("Fotos1")!!.child(image.getLastPathSegment()!!)
+        image.let { FilePath.putFile(it) }
             ?.addOnSuccessListener { //Esto seria para descargar su token de enlace y poder acceder a ella
                 //Si no lo quieres poner no hace falta
-                FilePath.downloadUrl.addOnSuccessListener {
+
+               FilePath.downloadUrl.addOnSuccessListener {
+                   Log.d("responseFire",it.toString())
                     liveImage.postValue(it.toString())
                 }
             }
-            return liveImage
+        return liveImage
     }
-
 }

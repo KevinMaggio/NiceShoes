@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -20,12 +21,19 @@ import androidx.core.content.ContextCompat
 import com.example.ventazapas.data.fireStore.FireStoreImp
 import com.example.ventazapas.databinding.FragmentAddShoesBinding
 import com.example.ventazapas.utils.Globals.OBJECT_USER
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.IOException
+import java.lang.System.out
+import android.os.Environment
+import java.lang.Exception
+
 
 class AddShoesFragment : Fragment() {
 
-    val CAMARA_REQUEST_CODE = 23
-    val PERMISO_CAMERA = 99
     val prueba = FireStoreImp()
+    private var responseImage = mutableListOf<String>()
 
     private lateinit var binding: FragmentAddShoesBinding
     private val list = listOf<String>("Masculino", "Femenino", "Unisex")
@@ -61,7 +69,7 @@ class AddShoesFragment : Fragment() {
                 temp,
                 binding.group.text.toString(),
                 createId().toString(),
-                listOf(),
+                responseImage,
                 binding.etName.text.toString(),
                 0,
                 binding.price.text.toString().toInt(),
@@ -72,13 +80,12 @@ class AddShoesFragment : Fragment() {
             message()
         }
         binding.btCancel.setOnClickListener {
-            clear()
+           clear()
         }
 
 
         binding.image.setOnClickListener {
-            permission()
-
+            selectImage()
         }
 
         return binding.root
@@ -112,7 +119,7 @@ class AddShoesFragment : Fragment() {
         )
 
 
-        prueba.getUser(OBJECT_USER.email).observe(viewLifecycleOwner,{
+        prueba.getUser(OBJECT_USER.email).observe(viewLifecycleOwner, {
             OBJECT_USER.id_edit = it.id_edit
         })
         return OBJECT_USER.id_edit
@@ -125,76 +132,40 @@ class AddShoesFragment : Fragment() {
         binding.group.text.clear()
         binding.price.text.clear()
         binding.waist.text.clear()
+        responseImage.clear()
+
     }
 
     fun message() {
         Toast.makeText(context, "Calzado agregado exitosamente", Toast.LENGTH_LONG).show()
     }
 
-    fun permission() {
-        when {
-            ContextCompat.checkSelfPermission(
-                context!!,
-                Manifest.permission.CAMERA
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                getImage()
-            }
-            shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) -> {
-                Toast.makeText(context, "Habilite los permisos desde OPCIONES", Toast.LENGTH_LONG)
-                    .show()
-            }
-            else -> {
-                requestPermissions(arrayOf(Manifest.permission.CAMERA), PERMISO_CAMERA)
-            }
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode) {
-            PERMISO_CAMERA -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    getImage()
-                }
-            }
-            else -> {
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-            }
-        }
-    }
-
-    fun getImage() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, CAMARA_REQUEST_CODE)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when(requestCode){
-            CAMARA_REQUEST_CODE ->{
-                if (resultCode!=Activity.RESULT_OK){
-
-                }else{
-
-                  prueba.getImage(image()!!)
-                }
-            }
-        }
-    }
-
-    //revisar y enviar a firestore
-fun image(): Uri? {
     var urlPhoto: Uri? = null
     val response =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
+
                 urlPhoto = result.data?.data
+                prueba.getImage(urlPhoto!!).observe(viewLifecycleOwner,{
+                    // poner load por carga de imagen
+                   // responseImage.clear()
+                    if (responseImage.contains(it)){
+
+                    }else {
+                        responseImage.add(it)
+                        Log.d("response", responseImage.toString())
+                    }
+                })
             }
         }
-    return urlPhoto
-}
+
+    fun selectImage(){
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "*/*"
+        response.launch(intent)
+    }
 
 }
+
+
+
