@@ -26,6 +26,7 @@ class FireStoreImp : FireStoreService {
     private val liveUser = MutableLiveData<ResponseUser>()
     private val liveShoes = MutableLiveData<ResponseShoes>()
     private val liveDelete = MutableLiveData<Boolean>()
+    private val liveAllOffertShoes = MutableLiveData<List<ResponseShoes>>()
     private val liveAllShoes = MutableLiveData<List<ResponseShoes>>()
     private val liveImage = MutableLiveData<String>()
 
@@ -197,7 +198,7 @@ class FireStoreImp : FireStoreService {
     }
 
     override fun getAllShoes(): MutableLiveData<List<ResponseShoes>> {
-        fireStore.collection("shoes").get()
+        fireStore.collection("shoes").whereEqualTo("state_offer",false).get()
             .addOnSuccessListener {
                 val list = mutableListOf<ResponseShoes>()
                 for (i in it.documents) {
@@ -247,4 +248,32 @@ class FireStoreImp : FireStoreService {
             }
         return liveImage
     }
+
+    override fun getListShoesByOffert(): MutableLiveData<List<ResponseShoes>> {
+        fireStore.collection("shoes").whereEqualTo("state_offer",true).get().addOnSuccessListener {
+            val list = mutableListOf<ResponseShoes>()
+            for (i in it.documents) {
+                list.add(
+                    ResponseShoes(
+                        i.get("code").toString(),
+                        i.get("color").toString(),
+                        i.get("description").toString(),
+                        i.get("discount_rate").toString(),
+                        i.get("gender").toString(),
+                        i.get("group").toString(),
+                        i.get("id").toString().toInt(),
+                        i.get("image") as List<String>,
+                        i.get("name").toString(),
+                        i.get("offer_price").toString().toInt(),
+                        i.get("price").toString().toInt(),
+                        i.get("state_offer").toString().toBoolean(),
+                        i.get("waist").toString()
+                    )
+                )
+            }
+            liveAllOffertShoes.postValue(list)
+        }
+        return liveAllOffertShoes
+    }
+
 }

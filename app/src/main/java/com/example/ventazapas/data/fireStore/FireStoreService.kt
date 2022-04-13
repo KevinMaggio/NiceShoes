@@ -45,4 +45,6 @@ interface FireStoreService {
     fun getAllShoes(): MutableLiveData<List<ResponseShoes>>
 
     fun deleteShoes(id: String): MutableLiveData<Boolean>
+
+    fun getListShoesByOffert(): MutableLiveData<List<ResponseShoes>>
 }
