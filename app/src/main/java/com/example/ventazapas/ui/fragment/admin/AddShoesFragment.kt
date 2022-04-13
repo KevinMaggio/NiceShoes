@@ -164,8 +164,4 @@ class AddShoesFragment : Fragment() {
         intent.type = "*/*"
         response.launch(intent)
     }
-
 }
-
-
-

@@ -1,5 +1,6 @@
 package com.example.ventazapas.ui.adapter
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,6 +50,7 @@ class ShoesHolder(view: View, listener: ShoesAdapter.OnClickListener) :
             binding.tvOldPrice.isVisible = true
             binding.tvPrice.text = "$${shoes.offer_price}"
             binding.tvMoney.text = "${shoes.discount_rate}%"
+            binding.tvOldPrice.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
         } else {
             Picasso.get().load(shoes.image[0]).into(binding.ivMoreSeen)
             binding.tvGender.text = shoes.gender
