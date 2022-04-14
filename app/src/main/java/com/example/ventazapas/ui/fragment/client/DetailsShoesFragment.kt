@@ -40,6 +40,7 @@ class DetailsShoesFragment : Fragment() {
                 binding.tvColor.text = it.color
                 binding.tvGender.text = it.gender
                 binding.tvType.text = it.group
+                binding.tvWaist.text = "T: ${it.waist}"
 
                 binding.tvOldPrice.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
             } else {
@@ -53,8 +54,7 @@ class DetailsShoesFragment : Fragment() {
                 binding.tvColor.text = it.color
                 binding.tvGender.text = it.gender
                 binding.tvType.text = it.group
-
-
+                binding.tvWaist.text = "T: ${it.waist}"
 
             }
 
