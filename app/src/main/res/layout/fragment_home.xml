@@ -64,20 +64,18 @@
               android:textSize="18sp" />
 
           <androidx.cardview.widget.CardView
-              android:layout_width="wrap_content"
-              app:cardCornerRadius="35dp"
-              android:layout_height="wrap_content">
-
-
-          <ImageView
               android:layout_width="70dp"
               android:layout_height="70dp"
-              android:scaleType="fitXY"
+              app:cardCornerRadius="35dp">
+
+          <ImageView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:scaleType="centerCrop"
               android:layout_marginEnd="5dp"
               android:src="@drawable/logo_nice_shoes"/>
 
           </androidx.cardview.widget.CardView>
-
       </LinearLayout>
 
       <LinearLayout

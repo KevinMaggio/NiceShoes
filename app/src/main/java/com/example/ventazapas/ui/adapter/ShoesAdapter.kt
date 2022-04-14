@@ -51,6 +51,7 @@ class ShoesHolder(view: View, listener: ShoesAdapter.OnClickListener) :
             binding.tvPrice.text = "$${shoes.offer_price}"
             binding.tvMoney.text = "${shoes.discount_rate}%"
             binding.tvOldPrice.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
+            binding.tvWaist.text = "T: ${shoes.waist}"
         } else {
             Picasso.get().load(shoes.image[0]).into(binding.ivMoreSeen)
             binding.tvGender.text = shoes.gender
@@ -58,6 +59,7 @@ class ShoesHolder(view: View, listener: ShoesAdapter.OnClickListener) :
             binding.tvPrice.text = "$ ${shoes.price}"
             binding.tvOldPrice.isVisible = false
             binding.tvMoney.isVisible = false
+            binding.tvWaist.text = "T: ${shoes.waist}"
         }
     }
 

@@ -102,6 +102,19 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
         <TextView
+            android:id="@+id/tv_waist"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="T: 44"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:layout_margin="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_money" />
+
+        <TextView
             android:id="@+id/tv_name_old_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
