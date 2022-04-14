@@ -27,12 +27,12 @@ class OmboardingActivity : AppCompatActivity() {
                 binding.etDirection.text.toString(),
                 binding.etDni.text.toString(),
                 EMAIL,
-                listOf(),
+                listOf(""),
                 0,
                 NAME,
                 binding.etWhatsapp.text.toString(),
-                listOf(),
-                listOf(),
+                listOf(""),
+                listOf(""),
                 0,
                 "client"
             )

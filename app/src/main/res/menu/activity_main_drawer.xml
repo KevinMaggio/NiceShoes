@@ -13,6 +13,14 @@
             android:icon="@drawable/zapatilla_icon"
             android:title="@string/nav_shoes" />
         <item
+            android:id="@+id/nav_offersFragment"
+            android:icon="@drawable/offer_icon"
+            android:title="@string/nav_offers" />
+        <item
+            android:id="@+id/nav_favoriteFragment"
+            android:icon="@drawable/png_favorite"
+            android:title="@string/nav_favorite" />
+        <item
             android:id="@+id/nav_my_orders"
             android:icon="@drawable/pedidos_icon"
             android:title="@string/nav_my_orders" />
@@ -20,18 +28,10 @@
             android:id="@+id/nav_stateAccountFragment"
             android:icon="@drawable/price"
             android:title="@string/nav_state_account" />
-        <item
-            android:id="@+id/nav_favoriteFragment"
-            android:icon="@drawable/home_icon"
-            android:title="@string/nav_favorite" />
-        <item
-            android:id="@+id/nav_offersFragment"
-            android:icon="@drawable/home_icon"
-            android:title="@string/nav_offers" />
 
         <item
             android:id="@+id/nav_purchaseHistoryFragment"
-            android:icon="@drawable/home_icon"
+            android:icon="@drawable/compras"
             android:title="@string/nav_purchase_history" />
 
         <item
@@ -45,20 +45,21 @@
             android:title="@string/nav_sell_shoes" />
         <item
             android:id="@+id/nav_changePriceFragment"
-            android:icon="@drawable/zapatilla_icon"
+            android:icon="@drawable/price"
             android:title="@string/nav_change_price" />
         <item
             android:id="@+id/nav_modifyShoeListFragment"
-            android:icon="@drawable/zapatilla_icon"
+            android:icon="@drawable/compras"
             android:title="@string/nav_modify_shoe_list" />
+        <item
+            android:id="@+id/nav_clientFragment"
+            android:icon="@drawable/contacts"
+            android:title="@string/nav_client" />
 
         <item
             android:id="@+id/nav_stateAccountAdminFragment"
-            android:icon="@drawable/price"
+            android:icon="@drawable/account"
             android:title="@string/nav_state_accountAdmin" />
-        <item
-            android:id="@+id/nav_clientFragment"
-            android:icon="@drawable/price"
-            android:title="@string/nav_client" />
+
     </group>
 </menu>
