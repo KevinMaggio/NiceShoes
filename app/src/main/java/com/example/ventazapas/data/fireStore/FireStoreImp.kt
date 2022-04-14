@@ -14,6 +14,7 @@ import com.google.firebase.storage.UploadTask
 import com.google.android.gms.tasks.OnSuccessListener
 
 import androidx.annotation.NonNull
+import androidx.lifecycle.LifecycleOwner
 
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.Task
@@ -28,6 +29,7 @@ class FireStoreImp : FireStoreService {
     private val liveDelete = MutableLiveData<Boolean>()
     private val liveAllOffertShoes = MutableLiveData<List<ResponseShoes>>()
     private val liveAllShoes = MutableLiveData<List<ResponseShoes>>()
+    private val liveListShoesById = MutableLiveData<List<ResponseShoes>>()
     private val liveImage = MutableLiveData<String>()
 
     override fun addUser(
@@ -198,7 +200,7 @@ class FireStoreImp : FireStoreService {
     }
 
     override fun getAllShoes(): MutableLiveData<List<ResponseShoes>> {
-        fireStore.collection("shoes").whereEqualTo("state_offer",false).get()
+        fireStore.collection("shoes").whereEqualTo("state_offer", false).get()
             .addOnSuccessListener {
                 val list = mutableListOf<ResponseShoes>()
                 for (i in it.documents) {
@@ -241,8 +243,8 @@ class FireStoreImp : FireStoreService {
             ?.addOnSuccessListener { //Esto seria para descargar su token de enlace y poder acceder a ella
                 //Si no lo quieres poner no hace falta
 
-               FilePath.downloadUrl.addOnSuccessListener {
-                   Log.d("responseFire",it.toString())
+                FilePath.downloadUrl.addOnSuccessListener {
+                    Log.d("responseFire", it.toString())
                     liveImage.postValue(it.toString())
                 }
             }
@@ -250,7 +252,7 @@ class FireStoreImp : FireStoreService {
     }
 
     override fun getListShoesByOffert(): MutableLiveData<List<ResponseShoes>> {
-        fireStore.collection("shoes").whereEqualTo("state_offer",true).get().addOnSuccessListener {
+        fireStore.collection("shoes").whereEqualTo("state_offer", true).get().addOnSuccessListener {
             val list = mutableListOf<ResponseShoes>()
             for (i in it.documents) {
                 list.add(
@@ -276,4 +278,89 @@ class FireStoreImp : FireStoreService {
         return liveAllOffertShoes
     }
 
+    fun addFavoriteToUser(email: String, id: String, owner: LifecycleOwner) {
+        var newIds = mutableListOf<String>()
+        getUser(email).observe(owner, {
+            if(it.favorite.isNotEmpty()){
+            for (i in it.favorite) {
+                if (!i.equals("") && !newIds.contains(i)){
+                    newIds.add(i)
+                }
+
+            }}
+            newIds.add(id)
+            fireStore.collection("user").document(email).set(
+                hashMapOf(
+                    "debt" to it.debt,
+                    "direction" to it.direction,
+                    "dni" to it.dni,
+                    "email" to it.email,
+                    "favorite" to newIds,
+                    "id_edit" to it.id_edit,
+                    "name" to it.name,
+                    "number" to it.number,
+                    "orders" to it.orders,
+                    "shopping" to it.shopping,
+                    "state_account" to it.state_account,
+                    "type" to it.type
+                )
+            )
+        })
+    }
+
+    fun deleteFavoriteToUser(email: String, id: String, owner: LifecycleOwner) {
+        var newIds2 = mutableListOf<String>()
+        getUser(email).observe(owner, {
+            newIds2 = it.favorite as MutableList<String>
+            if (newIds2.contains(id)) {
+                newIds2.remove(id)
+            }
+
+            fireStore.collection("user").document(email).set(
+                hashMapOf(
+                    "debt" to it.debt,
+                    "direction" to it.direction,
+                    "dni" to it.dni,
+                    "email" to it.email,
+                    "favorite" to newIds2,
+                    "id_edit" to it.id_edit,
+                    "name" to it.name,
+                    "number" to it.number,
+                    "orders" to it.orders,
+                    "shopping" to it.shopping,
+                    "state_account" to it.state_account,
+                    "type" to it.type
+                )
+            )
+        })
+    }
+
+    fun getListShoesByIDs(listId: List<String>): MutableLiveData<List<ResponseShoes>> {
+        val listTemp = mutableListOf<ResponseShoes>()
+        for (i in listId){
+            fireStore.collection("shoes").whereEqualTo("id", i).get().addOnSuccessListener{
+                for (i in it.documents) {
+                    listTemp.add(
+                        ResponseShoes(
+                            i.get("code").toString(),
+                            i.get("color").toString(),
+                            i.get("description").toString(),
+                            i.get("discount_rate").toString(),
+                            i.get("gender").toString(),
+                            i.get("group").toString(),
+                            i.get("id").toString().toInt(),
+                            i.get("image") as List<String>,
+                            i.get("name").toString(),
+                            i.get("offer_price").toString().toInt(),
+                            i.get("price").toString().toInt(),
+                            i.get("state_offer").toString().toBoolean(),
+                            i.get("waist").toString()
+                        )
+                    )
+                }
+                liveListShoesById.value = listTemp
+            }
+        }
+        return liveListShoesById
+    }
 }

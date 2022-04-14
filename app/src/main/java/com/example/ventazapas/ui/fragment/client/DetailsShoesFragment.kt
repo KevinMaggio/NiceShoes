@@ -9,25 +9,40 @@ import androidx.core.view.isVisible
 import com.example.ventazapas.data.fireStore.FireStoreImp
 import com.example.ventazapas.databinding.FragmentDetailsShoesBinding
 import com.example.ventazapas.ui.adapter.ShoesDetailsAdapter
-import com.squareup.picasso.Picasso
-import android.R
 import android.graphics.Paint
-
-import android.widget.TextView
 import androidx.navigation.fragment.findNavController
+import com.example.ventazapas.R
+import com.example.ventazapas.data.model.ResponseShoes
+import com.example.ventazapas.utils.Globals.EMAIL
 
 
 class DetailsShoesFragment : Fragment() {
 
     private val prueba1 = FireStoreImp()
     private lateinit var binding: FragmentDetailsShoesBinding
+    var condition = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetailsShoesBinding.inflate(inflater, container, false)
 
+        binding.iconFavorite.setOnClickListener {
+            animationIcon()
+        }
+
+        prueba1.getUser(EMAIL).observe(viewLifecycleOwner,{
+            if(it.favorite.isNotEmpty() && it.favorite.contains(getBundle())){
+                binding.iconFavorite.setImageResource(R.drawable.icon_favorite_yellow)
+                condition = true
+            }else{
+                binding.iconFavorite.setImageResource(R.drawable.icon_favorite_empty)
+                condition = false
+            }
+        })
+
         prueba1.getShoesById(getBundle()).observe(viewLifecycleOwner) {
+
             if (it.state_offer) {
                 initRecyclerView(it.image)
                 binding.tvGender.text = it.gender
@@ -68,6 +83,10 @@ class DetailsShoesFragment : Fragment() {
         return binding.root
     }
 
+
+
+
+
     private fun getBundle(): String {
         val date = arguments?.getString("id").toString()
         return date
@@ -76,5 +95,17 @@ class DetailsShoesFragment : Fragment() {
     private fun initRecyclerView(list: List<String>) {
         val adapter = ShoesDetailsAdapter(list)
         binding.rvImages.adapter = adapter
+    }
+    fun animationIcon(){
+
+        when(condition) {
+
+            true ->{ binding.iconFavorite.setImageResource(R.drawable.icon_favorite_empty)
+            prueba1.deleteFavoriteToUser(EMAIL,getBundle(),viewLifecycleOwner)}
+
+            false ->{ binding . iconFavorite . setImageResource (R.drawable.icon_favorite_yellow)
+            prueba1.addFavoriteToUser(EMAIL,getBundle(),viewLifecycleOwner)}
+
+        }
     }
 }
