@@ -33,8 +33,13 @@ class LoginActivity : AppCompatActivity() {
         binding.btLogin.setOnClickListener {
             loginToGoogle()
 
-            //mock
+            //mock Admin
 //            EMAIL= "kevinmaggio57@gmail.com"
+//            NAME = "usuario test"
+//            loginFireStore(EMAIL)
+//
+            //mock Client
+//            EMAIL= "kevinmaggio5@gmail.com"
 //            NAME = "usuario test"
 //            loginFireStore(EMAIL)
 

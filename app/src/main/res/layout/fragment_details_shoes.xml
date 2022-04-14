@@ -17,7 +17,6 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
-
         <ImageView
             android:id="@+id/iv_logo"
             android:layout_width="match_parent"
@@ -64,30 +63,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/v_liner" />
 
+        <ImageView
+            android:id="@+id/icon_favorite"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="30dp"
+            android:padding="6dp"
+            android:src="@drawable/icon_favorite_empty"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"/>
+
         <TextView
             android:id="@+id/tv_name_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="15dp"
             android:text="Precio: "
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+            app:layout_constraintTop_toBottomOf="@+id/icon_favorite" />
 
         <TextView
             android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="15dp"
             android:text="8500"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/tv_name_price"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+            app:layout_constraintTop_toBottomOf="@+id/icon_favorite" />
 
         <TextView
             android:id="@+id/tv_money"

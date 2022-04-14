@@ -14,12 +14,15 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ventazapas.AppNiceShoes.Companion.preferences
 import com.example.ventazapas.databinding.ActivityDrawerBinding
+import com.example.ventazapas.databinding.NavHeaderDrawerBinding
+import com.example.ventazapas.utils.Globals.NAME
 import com.example.ventazapas.utils.Globals.OBJECT_USER
 
 class DrawerActivity : AppCompatActivity() {
 
     private lateinit var navigationView: NavigationView
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var bindingNav: NavHeaderDrawerBinding
     private lateinit var binding: ActivityDrawerBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +59,8 @@ class DrawerActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         navigationView = findViewById<View>(R.id.nav_view) as NavigationView
+        val hView: View = navigationView.getHeaderView(0)
+        bindingNav = NavHeaderDrawerBinding.bind(hView)
 
         checkUser(OBJECT_USER.type)
         binding.btLogOut.setOnClickListener {
@@ -74,6 +79,7 @@ class DrawerActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_drawer)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+
     }
 
     fun checkUser(type: String) {
@@ -86,14 +92,17 @@ class DrawerActivity : AppCompatActivity() {
             navigationView.menu.findItem(R.id.nav_my_orders).isVisible= false
             navigationView.menu.findItem(R.id.nav_purchaseHistoryFragment).isVisible= false
             navigationView.menu.findItem(R.id.nav_stateAccountFragment).isVisible= false
+            bindingNav.tvName.text= NAME
         } else {
             /** Client */
             navigationView.menu.findItem(R.id.nav_home_fragment).isVisible = true
+            navigationView.menu.findItem(R.id.nav_modifyShoeListFragment).isVisible= false
             navigationView.menu.findItem(R.id.nav_addShoesFragment).isVisible = false
             navigationView.menu.findItem(R.id.nav_sellShoesFragment).isVisible = false
             navigationView.menu.findItem(R.id.nav_changePriceFragment).isVisible = false
             navigationView.menu.findItem(R.id.nav_stateAccountAdminFragment).isVisible = false
             navigationView.menu.findItem(R.id.nav_clientFragment).isVisible = false
+            bindingNav.tvName.text= NAME
         }
     }
 }
