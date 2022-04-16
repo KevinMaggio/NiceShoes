@@ -1,5 +1,6 @@
 package com.example.ventazapas.ui.fragment.client
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,8 +12,8 @@ import com.example.ventazapas.databinding.FragmentDetailsShoesBinding
 import com.example.ventazapas.ui.adapter.ShoesDetailsAdapter
 import android.graphics.Paint
 import androidx.navigation.fragment.findNavController
+import com.example.ventazapas.AppNiceShoes.Companion.preferences
 import com.example.ventazapas.R
-import com.example.ventazapas.data.model.ResponseShoes
 import com.example.ventazapas.utils.Globals.EMAIL
 
 
@@ -27,17 +28,23 @@ class DetailsShoesFragment : Fragment() {
     ): View {
         binding = FragmentDetailsShoesBinding.inflate(inflater, container, false)
 
-        addOrders()
 
+        preferences.saveLastID(getBundle())
         binding.iconFavorite.setOnClickListener {
             animationIcon()
         }
+        binding.btRegister.setOnClickListener {
+            prueba1.addOrders(getBundle(), EMAIL, viewLifecycleOwner)
+            prueba1.addMyOrdersUsers(EMAIL,getBundle(),viewLifecycleOwner)
+            alert()
 
-        prueba1.getUser(EMAIL).observe(viewLifecycleOwner,{
-            if(it.favorite.isNotEmpty() && it.favorite.contains(getBundle())){
+        }
+
+        prueba1.getUser(EMAIL).observe(viewLifecycleOwner, {
+            if (it.favorite.isNotEmpty() && it.favorite.contains(getBundle())) {
                 binding.iconFavorite.setImageResource(R.drawable.icon_favorite_yellow)
                 condition = true
-            }else{
+            } else {
                 binding.iconFavorite.setImageResource(R.drawable.icon_favorite_empty)
                 condition = false
             }
@@ -80,14 +87,8 @@ class DetailsShoesFragment : Fragment() {
             }
         }
 
-
-
         return binding.root
     }
-
-
-
-
 
     private fun getBundle(): String {
         val date = arguments?.getString("id").toString()
@@ -98,21 +99,26 @@ class DetailsShoesFragment : Fragment() {
         val adapter = ShoesDetailsAdapter(list)
         binding.rvImages.adapter = adapter
     }
-    fun animationIcon(){
 
-        when(condition) {
+    fun animationIcon() {
 
-            true ->{ binding.iconFavorite.setImageResource(R.drawable.icon_favorite_empty)
-            prueba1.deleteFavoriteToUser(EMAIL,getBundle(),viewLifecycleOwner)}
+        when (condition) {
 
-            false ->{ binding . iconFavorite . setImageResource (R.drawable.icon_favorite_yellow)
-            prueba1.addFavoriteToUser(EMAIL,getBundle(),viewLifecycleOwner)}
+            true -> {
+                binding.iconFavorite.setImageResource(R.drawable.icon_favorite_empty)
+                prueba1.deleteFavoriteToUser(EMAIL, getBundle(), viewLifecycleOwner)
+            }
 
+            false -> {
+                binding.iconFavorite.setImageResource(R.drawable.icon_favorite_yellow)
+                prueba1.addFavoriteToUser(EMAIL, getBundle(), viewLifecycleOwner)
+            }
         }
     }
-    fun addOrders(){
-        binding.btRegister.setOnClickListener{
-            prueba1.addMyOrdersUsers(EMAIL,getBundle(),viewLifecycleOwner)
-        }
+    fun alert() {
+        val alertDialog = AlertDialog.Builder(context)
+            .setMessage("Gracias por Su Compra, en breve se comunicaran con usted")
+            .setTitle("Compra Finalizada")
+        alertDialog.show()
     }
 }

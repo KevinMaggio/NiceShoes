@@ -20,6 +20,7 @@ class OmboardingActivity : AppCompatActivity() {
         binding = ActivityOmboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        prueba.registerOrder(EMAIL)
         binding.btRegister.setOnClickListener {
             prueba.addUser(
                 EMAIL,
