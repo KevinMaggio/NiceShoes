@@ -6,6 +6,7 @@ object Globals {
 
     var EMAIL = ""
     var NAME = ""
+    var LAST_ID=""
     var OBJECT_USER = ResponseUser(
         0, "",
         "", "", listOf(), 0, "",

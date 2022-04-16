@@ -188,7 +188,6 @@
               android:layout_height="1dp"
               android:layout_margin="15dp"
               android:background="@color/teal_200"
-              app:layout_constraintBottom_toTopOf="@+id/tv_money"
               app:layout_constraintTop_toBottomOf="@+id/iv_more_seen" />
 
 
@@ -196,14 +195,13 @@
               android:id="@+id/tv_money"
               android:layout_width="100dp"
               android:layout_height="wrap_content"
-              android:layout_marginEnd="8dp"
               android:text="30%"
               android:textAlignment="center"
-              android:textColor="@color/yellow"
+              android:textColor="@color/rojo_intenso"
               android:textSize="45sp"
               android:textStyle="italic"
-              app:layout_constraintEnd_toStartOf="@+id/tv_price"
-              app:layout_constraintTop_toBottomOf="@+id/v_liner" />
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintTop_toTopOf="@id/iv_more_seen" />
 
           <TextView
               android:id="@+id/tv_name"
