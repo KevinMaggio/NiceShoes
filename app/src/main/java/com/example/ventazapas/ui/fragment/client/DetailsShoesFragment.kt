@@ -11,13 +11,10 @@ import com.example.ventazapas.data.fireStore.FireStoreImp
 import com.example.ventazapas.databinding.FragmentDetailsShoesBinding
 import com.example.ventazapas.ui.adapter.ShoesDetailsAdapter
 import android.graphics.Paint
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.ventazapas.AppNiceShoes.Companion.preferences
 import com.example.ventazapas.R
-import com.example.ventazapas.data.model.ResponseShoes
 import com.example.ventazapas.utils.Globals.EMAIL
-import com.example.ventazapas.utils.Globals.LAST_ID
 
 
 class DetailsShoesFragment : Fragment() {
@@ -31,13 +28,14 @@ class DetailsShoesFragment : Fragment() {
     ): View {
         binding = FragmentDetailsShoesBinding.inflate(inflater, container, false)
 
+
         preferences.saveLastID(getBundle())
         binding.iconFavorite.setOnClickListener {
             animationIcon()
         }
         binding.btRegister.setOnClickListener {
             prueba1.addOrders(getBundle(), EMAIL, viewLifecycleOwner)
-
+            prueba1.addMyOrdersUsers(EMAIL,getBundle(),viewLifecycleOwner)
             alert()
 
         }
@@ -89,11 +87,8 @@ class DetailsShoesFragment : Fragment() {
             }
         }
 
-
-
         return binding.root
     }
-
 
     private fun getBundle(): String {
         val date = arguments?.getString("id").toString()
@@ -118,10 +113,8 @@ class DetailsShoesFragment : Fragment() {
                 binding.iconFavorite.setImageResource(R.drawable.icon_favorite_yellow)
                 prueba1.addFavoriteToUser(EMAIL, getBundle(), viewLifecycleOwner)
             }
-
         }
     }
-
     fun alert() {
         val alertDialog = AlertDialog.Builder(context)
             .setMessage("Gracias por Su Compra, en breve se comunicaran con usted")

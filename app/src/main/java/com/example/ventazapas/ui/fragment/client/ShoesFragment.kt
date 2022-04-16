@@ -32,6 +32,8 @@ class ShoesFragment : Fragment() {
     ): View {
         binding = FragmentShoesBinding.inflate(inflater, container, false)
 
+        binding.filter1.isVisible = false/** editar los filtros antes de quitar esta linea*/
+
         prueba.getAllShoes().observe(viewLifecycleOwner) {
             Log.d("response", it.toString())
             initRecyclerView(it)
