@@ -102,7 +102,7 @@ class DrawerActivity : AppCompatActivity() {
             navigationView.menu.findItem(R.id.nav_changePriceFragment).isVisible = false
             navigationView.menu.findItem(R.id.nav_stateAccountAdminFragment).isVisible = false
             navigationView.menu.findItem(R.id.nav_clientFragment).isVisible = false
-            bindingNav.tvName.text= NAME
+           bindingNav.tvName.text= NAME
         }
     }
 }

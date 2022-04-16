@@ -2,23 +2,16 @@ package com.example.ventazapas.data.fireStore
 
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.ventazapas.data.model.ResponseShoes
 import com.example.ventazapas.data.model.ResponseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.UploadTask
 
-import com.google.android.gms.tasks.OnSuccessListener
-
-import androidx.annotation.NonNull
 import androidx.lifecycle.LifecycleOwner
-
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.Task
-import java.io.File
+import com.example.ventazapas.data.model.ResponseOrders
 
 
 class FireStoreImp : FireStoreService {
@@ -31,6 +24,8 @@ class FireStoreImp : FireStoreService {
     private val liveAllShoes = MutableLiveData<List<ResponseShoes>>()
     private val liveListShoesById = MutableLiveData<List<ResponseShoes>>()
     private val liveImage = MutableLiveData<String>()
+    private val liveListOrders = MutableLiveData<List<ResponseOrders>>()
+    private val liveOrder = MutableLiveData<ResponseOrders>()
 
     override fun addUser(
         title: String,
@@ -281,13 +276,14 @@ class FireStoreImp : FireStoreService {
     fun addFavoriteToUser(email: String, id: String, owner: LifecycleOwner) {
         var newIds = mutableListOf<String>()
         getUser(email).observe(owner, {
-            if(it.favorite.isNotEmpty()){
-            for (i in it.favorite) {
-                if (!i.equals("") && !newIds.contains(i)){
-                    newIds.add(i)
-                }
+            if (it.favorite.isNotEmpty()) {
+                for (i in it.favorite) {
+                    if (!i.equals("") && !newIds.contains(i)) {
+                        newIds.add(i)
+                    }
 
-            }}
+                }
+            }
             newIds.add(id)
             fireStore.collection("user").document(email).set(
                 hashMapOf(
@@ -337,8 +333,8 @@ class FireStoreImp : FireStoreService {
 
     fun getListShoesByIDs(listId: List<String>): MutableLiveData<List<ResponseShoes>> {
         val listTemp = mutableListOf<ResponseShoes>()
-        for (i in listId){
-            fireStore.collection("shoes").whereEqualTo("id", i).get().addOnSuccessListener{
+        for (i in listId) {
+            fireStore.collection("shoes").whereEqualTo("id", i).get().addOnSuccessListener {
                 for (i in it.documents) {
                     listTemp.add(
                         ResponseShoes(
@@ -362,5 +358,61 @@ class FireStoreImp : FireStoreService {
             }
         }
         return liveListShoesById
+    }
+
+    fun addOrders(id: String, email: String, owner: LifecycleOwner) {
+        val temp = mutableListOf<String>()
+        getOrderByID(email).observe(owner, {
+            if (!it.ids.isNullOrEmpty()) {
+                for (i in it.ids) {
+                    temp.add(i)
+                }
+            }
+            temp.add(id)
+            fireStore.collection("shopping").document(it.email).set(
+                hashMapOf(
+                    "id" to temp,
+                    "email" to email
+                )
+            )
+        })
+
+    }
+
+    fun getAllOrders(): MutableLiveData<List<ResponseOrders>> {
+        val temp = mutableListOf<ResponseOrders>()
+        fireStore.collection("shopping").get().addOnSuccessListener {
+            for (i in it.documents) {
+                temp.add(
+                    ResponseOrders(
+                        i.get("id") as List<String>,
+                        i.get("email").toString()
+                    )
+                )
+            }
+            liveListOrders.value = temp
+        }
+        return liveListOrders
+    }
+
+    fun getOrderByID(email: String): MutableLiveData<ResponseOrders> {
+        fireStore.collection("shopping").document(email).get().addOnSuccessListener {
+            if (it.data != null) {
+               liveOrder.postValue( ResponseOrders(
+                    it.get("id") as List<String>,
+                    it.get("email").toString()
+                ))
+            }
+        }
+        return liveOrder
+    }
+
+    fun registerOrder(email: String) {
+        fireStore.collection("shopping").document(email).set(
+            hashMapOf(
+                "id" to listOf<String>(),
+                "email" to email
+            )
+        )
     }
 }
