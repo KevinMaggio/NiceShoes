@@ -281,13 +281,14 @@ class FireStoreImp : FireStoreService {
     fun addFavoriteToUser(email: String, id: String, owner: LifecycleOwner) {
         var newIds = mutableListOf<String>()
         getUser(email).observe(owner, {
-            if(it.favorite.isNotEmpty()){
-            for (i in it.favorite) {
-                if (!i.equals("") && !newIds.contains(i)){
-                    newIds.add(i)
-                }
+            if (it.favorite.isNotEmpty()) {
+                for (i in it.favorite) {
+                    if (!i.equals("") && !newIds.contains(i)) {
+                        newIds.add(i)
+                    }
 
-            }}
+                }
+            }
             newIds.add(id)
             fireStore.collection("user").document(email).set(
                 hashMapOf(
@@ -337,8 +338,8 @@ class FireStoreImp : FireStoreService {
 
     fun getListShoesByIDs(listId: List<String>): MutableLiveData<List<ResponseShoes>> {
         val listTemp = mutableListOf<ResponseShoes>()
-        for (i in listId){
-            fireStore.collection("shoes").whereEqualTo("id", i).get().addOnSuccessListener{
+        for (i in listId) {
+            fireStore.collection("shoes").whereEqualTo("id", i).get().addOnSuccessListener {
                 for (i in it.documents) {
                     listTemp.add(
                         ResponseShoes(
@@ -362,5 +363,61 @@ class FireStoreImp : FireStoreService {
             }
         }
         return liveListShoesById
+    }
+
+    fun addMyOrdersUsers(email: String, id: String, owner: LifecycleOwner) {
+        var newIds = mutableListOf<String>()
+        getUser(email).observe(owner) {
+            if (it.orders.isNotEmpty()) {
+                for (i in it.orders) {
+                    if (i != "" && !newIds.contains(i)) {
+                        newIds.add(i)
+                    }
+                }
+            }
+            newIds.add(id)
+            fireStore.collection("user").document(email).set(
+                hashMapOf(
+                    "debt" to it.debt,
+                    "direction" to it.direction,
+                    "dni" to it.dni,
+                    "email" to it.email,
+                    "favorite" to it.favorite,
+                    "id_edit" to it.id_edit,
+                    "name" to it.name,
+                    "number" to it.number,
+                    "orders" to newIds,
+                    "shopping" to it.shopping,
+                    "state_account" to it.state_account,
+                    "type" to it.type
+                )
+            )
+        }
+    }
+
+    fun deleteMyOrdersUsers(email: String, id: String, owner: LifecycleOwner) {
+        var newID = mutableListOf<String>()
+        getUser(email).observe(owner) {
+            newID = it.orders as MutableList<String>
+            if (newID.contains(id)) {
+                newID.remove(id)
+            }
+            fireStore.collection("user").document(email).set(
+                hashMapOf(
+                    "debt" to it.debt,
+                    "direction" to it.direction,
+                    "dni" to it.dni,
+                    "email" to it.email,
+                    "favorite" to it.favorite,
+                    "id_edit" to it.id_edit,
+                    "name" to it.name,
+                    "number" to it.number,
+                    "orders" to newID,
+                    "shopping" to it.shopping,
+                    "state_account" to it.state_account,
+                    "type" to it.type
+                )
+            )
+        }
     }
 }

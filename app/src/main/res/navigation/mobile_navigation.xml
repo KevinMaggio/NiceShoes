@@ -79,6 +79,6 @@
     <fragment
         android:id="@+id/detailsShoesFragment"
         android:name="com.example.ventazapas.ui.fragment.client.DetailsShoesFragment"
-        android:label="fragment_details_shoes"
+        android:label="@string/nav_details"
         tools:layout="@layout/fragment_details_shoes" />
 </navigation>

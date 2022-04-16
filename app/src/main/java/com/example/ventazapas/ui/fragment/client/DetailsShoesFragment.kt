@@ -27,6 +27,8 @@ class DetailsShoesFragment : Fragment() {
     ): View {
         binding = FragmentDetailsShoesBinding.inflate(inflater, container, false)
 
+        addOrders()
+
         binding.iconFavorite.setOnClickListener {
             animationIcon()
         }
@@ -106,6 +108,11 @@ class DetailsShoesFragment : Fragment() {
             false ->{ binding . iconFavorite . setImageResource (R.drawable.icon_favorite_yellow)
             prueba1.addFavoriteToUser(EMAIL,getBundle(),viewLifecycleOwner)}
 
+        }
+    }
+    fun addOrders(){
+        binding.btRegister.setOnClickListener{
+            prueba1.addMyOrdersUsers(EMAIL,getBundle(),viewLifecycleOwner)
         }
     }
 }
