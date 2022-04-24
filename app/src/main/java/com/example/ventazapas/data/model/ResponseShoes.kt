@@ -13,5 +13,6 @@ data class ResponseShoes(
     val offer_price: Int,
     val price: Int,
     val state_offer: Boolean,
-    val waist: String
+    val waist: String,
+    val available:Boolean
 )

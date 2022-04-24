@@ -125,7 +125,8 @@ class FireStoreImp : FireStoreService {
         offer_price: Int,
         price: Int,
         state_offer: Boolean,
-        waist: String
+        waist: String,
+        avaiable: Boolean
     ) {
         fireStore.collection("shoes").document(id).set(
             hashMapOf(
@@ -141,7 +142,8 @@ class FireStoreImp : FireStoreService {
                 "offer_price" to offer_price,
                 "price" to price,
                 "state_offer" to state_offer,
-                "waist" to waist
+                "waist" to waist,
+                "available" to avaiable
             )
         )
     }
@@ -150,50 +152,55 @@ class FireStoreImp : FireStoreService {
         fireStore.collection("shoes").document(id).get()
             .addOnSuccessListener {
 
-                if (!it.data.isNullOrEmpty()) {
-                    liveShoes.postValue(
-                        ResponseShoes(
-                            it.get("code").toString(),
-                            it.get("color").toString(),
-                            it.get("description").toString(),
-                            it.get("discount_rate").toString(),
-                            it.get("gender").toString(),
-                            it.get("group").toString(),
-                            it.get("id").toString().toInt(),
-                            it.get("image") as List<String>,
-                            it.get("name").toString(),
-                            it.get("offer_price").toString().toInt(),
-                            it.get("price").toString().toInt(),
-                            it.get("state_offer").toString().toBoolean(),
-                            it.get("waist").toString()
+                if (it.data?.get("available").toString().toBoolean()) {
+                    if (!it.data.isNullOrEmpty()) {
+                        liveShoes.postValue(
+                            ResponseShoes(
+                                it.get("code").toString(),
+                                it.get("color").toString(),
+                                it.get("description").toString(),
+                                it.get("discount_rate").toString(),
+                                it.get("gender").toString(),
+                                it.get("group").toString(),
+                                it.get("id").toString().toInt(),
+                                it.get("image") as List<String>,
+                                it.get("name").toString(),
+                                it.get("offer_price").toString().toInt(),
+                                it.get("price").toString().toInt(),
+                                it.get("state_offer").toString().toBoolean(),
+                                it.get("waist").toString(),
+                                it.get("available").toString().toBoolean()
+                            )
                         )
-                    )
-                } else {
-                    liveShoes.postValue(
-                        ResponseShoes(
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            0,
-                            listOf(),
-                            "empty",
-                            0,
-                            0,
-                            false,
-                            ""
+                    } else {
+                        liveShoes.postValue(
+                            ResponseShoes(
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                0,
+                                listOf(),
+                                "empty",
+                                0,
+                                0,
+                                false,
+                                "",
+                                false
+                            )
                         )
-                    )
-                }
+                    }
 
+                }
             }
         return liveShoes
     }
 
     override fun getAllShoes(): MutableLiveData<List<ResponseShoes>> {
-        fireStore.collection("shoes").whereEqualTo("state_offer", false).get()
+        fireStore.collection("shoes").whereEqualTo("state_offer", false)
+            .whereEqualTo("available", true).get()
             .addOnSuccessListener {
                 val list = mutableListOf<ResponseShoes>()
                 for (i in it.documents) {
@@ -211,7 +218,8 @@ class FireStoreImp : FireStoreService {
                             i.get("offer_price").toString().toInt(),
                             i.get("price").toString().toInt(),
                             i.get("state_offer").toString().toBoolean(),
-                            i.get("waist").toString()
+                            i.get("waist").toString(),
+                            i.get("available").toString().toBoolean()
                         )
                     )
                 }
@@ -221,11 +229,26 @@ class FireStoreImp : FireStoreService {
     }
 
 
-    override fun deleteShoes(id: String): MutableLiveData<Boolean> {
-        fireStore.collection("shoes").document(id)
-            .delete()
-            .addOnSuccessListener { liveDelete.postValue(true) }
-            .addOnFailureListener { liveDelete.postValue(false) }
+    override fun deleteShoes(id: String, owner: LifecycleOwner): MutableLiveData<Boolean> {
+        getShoesById(id).observe(owner, {
+            addShoes(
+                it.code,
+                it.color,
+                it.description,
+                it.discount_rate,
+                it.gender,
+                it.group,
+                it.id.toString(),
+                it.image,
+                it.name,
+                it.offer_price,
+                it.price,
+                it.state_offer,
+                it.waist,
+                false
+            )
+        })
+
         return liveDelete
     }
 
@@ -245,9 +268,9 @@ class FireStoreImp : FireStoreService {
     }
 
     override fun getListShoesByOffert(): MutableLiveData<List<ResponseShoes>> {
-        fireStore.collection("shoes").whereEqualTo("state_offer", true).get().addOnSuccessListener {
+        fireStore.collection("shoes").whereEqualTo("state_offer", true).whereEqualTo("avaiable", true).get().addOnSuccessListener {
             val list = mutableListOf<ResponseShoes>()
-            for (i in it.documents)  {
+            for (i in it.documents) {
                 list.add(
                     ResponseShoes(
                         i.get("code").toString(),
@@ -262,7 +285,8 @@ class FireStoreImp : FireStoreService {
                         i.get("offer_price").toString().toInt(),
                         i.get("price").toString().toInt(),
                         i.get("state_offer").toString().toBoolean(),
-                        i.get("waist").toString()
+                        i.get("waist").toString(),
+                        true
                     )
                 )
             }
@@ -332,28 +356,30 @@ class FireStoreImp : FireStoreService {
     fun getListShoesByIDs(listId: List<String>): MutableLiveData<List<ResponseShoes>> {
         val listTemp = mutableListOf<ResponseShoes>()
         for (i in listId) {
-            fireStore.collection("shoes").whereEqualTo("id", i).get().addOnSuccessListener {
-                for (i in it.documents) {
-                    listTemp.add(
-                        ResponseShoes(
-                            i.get("code").toString(),
-                            i.get("color").toString(),
-                            i.get("description").toString(),
-                            i.get("discount_rate").toString(),
-                            i.get("gender").toString(),
-                            i.get("group").toString(),
-                            i.get("id").toString().toInt(),
-                            i.get("image") as List<String>,
-                            i.get("name").toString(),
-                            i.get("offer_price").toString().toInt(),
-                            i.get("price").toString().toInt(),
-                            i.get("state_offer").toString().toBoolean(),
-                            i.get("waist").toString()
+            fireStore.collection("shoes").whereEqualTo("id", i).whereEqualTo("avaiable", true).get()
+                .addOnSuccessListener {
+                    for (i in it.documents) {
+                        listTemp.add(
+                            ResponseShoes(
+                                i.get("code").toString(),
+                                i.get("color").toString(),
+                                i.get("description").toString(),
+                                i.get("discount_rate").toString(),
+                                i.get("gender").toString(),
+                                i.get("group").toString(),
+                                i.get("id").toString().toInt(),
+                                i.get("image") as List<String>,
+                                i.get("name").toString(),
+                                i.get("offer_price").toString().toInt(),
+                                i.get("price").toString().toInt(),
+                                i.get("state_offer").toString().toBoolean(),
+                                i.get("waist").toString(),
+                                true
+                            )
                         )
-                    )
+                    }
+                    liveListShoesById.value = listTemp
                 }
-                liveListShoesById.value = listTemp
-            }
         }
         return liveListShoesById
     }
