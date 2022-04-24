@@ -1,5 +1,6 @@
 package com.example.ventazapas.data.fireStore
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import com.example.ventazapas.data.model.ResponseShoes
 import com.example.ventazapas.data.model.ResponseUser
@@ -37,14 +38,15 @@ interface FireStoreService {
         offer_price: Int,
         price: Int,
         state_offer: Boolean,
-        waist: String
+        waist: String,
+        avaiable:Boolean
     )
 
     fun getShoesById(id: String): MutableLiveData<ResponseShoes>
 
     fun getAllShoes(): MutableLiveData<List<ResponseShoes>>
 
-    fun deleteShoes(id: String): MutableLiveData<Boolean>
+    fun deleteShoes(id: String,owner: LifecycleOwner): MutableLiveData<Boolean>
 
     fun getListShoesByOffert(): MutableLiveData<List<ResponseShoes>>
 }
