@@ -17,6 +17,7 @@ import com.example.ventazapas.data.model.MockShoes
 import com.example.ventazapas.data.model.ResponseShoes
 import com.example.ventazapas.databinding.FragmentHomeBinding
 import com.example.ventazapas.ui.adapter.ShoesAdapter
+import com.example.ventazapas.ui.adapter.ShoesRecommendedAdapter
 import com.example.ventazapas.ui.fragment.client.DetailsShoesFragment
 import com.example.ventazapas.ui.viewModel.HomeViewModel
 import com.example.ventazapas.ui.viewModel.ShoesViewModel
@@ -61,9 +62,9 @@ class HomeFragment : Fragment() {
         })
     }
     private fun initRecyclerViewRecommended(list: List<ResponseShoes>) {
-        val adapter = ShoesAdapter(list)
+        val adapter = ShoesRecommendedAdapter(list)
         binding.rvRecommended.adapter = adapter
-        adapter.setOnClickListener(object : ShoesAdapter.OnClickListener {
+        adapter.setOnClickListener(object : ShoesRecommendedAdapter.OnClickListener {
             override fun onItemClick(position: Int) {
 
                 val bundle = Bundle()

@@ -7,11 +7,4 @@ import com.example.ventazapas.data.repository.ShoesRepository
 
 class HomeViewModel : ViewModel() {
 
-    val shoesRepository = ShoesRepository()
-    val listMockShoes = MutableLiveData<List<MockShoes>>()
-
-    fun getMockShoes() {
-        listMockShoes.value = shoesRepository.getMockShoes()
-    }
-
 }
