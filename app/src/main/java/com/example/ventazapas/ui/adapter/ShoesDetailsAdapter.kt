@@ -19,7 +19,6 @@ class ShoesDetailsHolder(val binding: ItemDetailsBinding) : RecyclerView.ViewHol
 
     override fun onBindViewHolder(holder: ShoesDetailsHolder, position: Int) {
         val shoes = list[position]
-        //Picasso.get().load(shoes).into(holder.binding.ivDetails)
         Glide.with(holder.binding.ivDetails).load(shoes).into(holder.binding.ivDetails)
     }
 
