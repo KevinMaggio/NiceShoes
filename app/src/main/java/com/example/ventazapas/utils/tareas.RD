@@ -35,3 +35,12 @@ menu -> admin
 Tareas :
 1 Armar menu de Cliente y de Admin. y mostrar el correspondiente
 2 crear  home. ( titulo. / rv con mas vistos / titulo2 rv con promociones / titulo 3
+
+
+tarea
+
+1 cambiar de lugar los text de unbording ( registrar a la izquierda, "la palabra cancel no se utiliza , es cancelar"
+
+2 en home ( el recyclerview de ultimo vistos , no muestra el tachado en un producto en oferta
+, agregar el metodo tachado dependiendo el producto)
+
