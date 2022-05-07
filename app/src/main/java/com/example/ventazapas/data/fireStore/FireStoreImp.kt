@@ -268,7 +268,8 @@ class FireStoreImp : FireStoreService {
     }
 
     override fun getListShoesByOffert(): MutableLiveData<List<ResponseShoes>> {
-        fireStore.collection("shoes").whereEqualTo("state_offer", true).whereEqualTo("avaiable", true).get().addOnSuccessListener {
+        fireStore.collection("shoes").whereEqualTo("state_offer", true)
+            .whereEqualTo("available", true).get().addOnSuccessListener {
             val list = mutableListOf<ResponseShoes>()
             for (i in it.documents) {
                 list.add(

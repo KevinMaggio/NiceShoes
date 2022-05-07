@@ -31,17 +31,18 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btLogin.setOnClickListener {
-           // loginToGoogle()
+           loginToGoogle()
 
             //mock Admin
-            EMAIL= "kevinmaggio57@gmail.com"
-            NAME = "usuario test"
-            loginFireStore(EMAIL)
+
+          //  EMAIL= "kevinmaggio57@gmail.com"
+          //  NAME = "usuario test"
+          //  loginFireStore(EMAIL)
 
             //mock Client
-//            EMAIL= "kevinmaggio5@gmail.com"
-//            NAME = "usuario test"
-//            loginFireStore(EMAIL)
+           EMAIL= "kevinmaggio5@gmail.com"
+           NAME = "usuario test"
+           loginFireStore(EMAIL)
 
         }
     }
