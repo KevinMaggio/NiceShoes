@@ -74,7 +74,8 @@ class AddShoesFragment : Fragment() {
                 0,
                 binding.price.text.toString().toInt(),
                 false,
-                binding.waist.text.toString()
+                binding.waist.text.toString(),
+                true
             )
             clear()
             message()

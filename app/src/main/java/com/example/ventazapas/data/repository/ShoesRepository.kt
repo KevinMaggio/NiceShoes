@@ -7,7 +7,4 @@ class ShoesRepository {
 
    private val shoesDataSource = ShoesDataSource()
 
-    fun getMockShoes(): List<MockShoes> {
-       return shoesDataSource.getMockShoes()
-    }
 }

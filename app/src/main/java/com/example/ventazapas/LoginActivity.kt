@@ -34,14 +34,15 @@ class LoginActivity : AppCompatActivity() {
            loginToGoogle()
 
             //mock Admin
-//            EMAIL= "kevinmaggio57@gmail.com"
+
+            EMAIL= "kevinmaggio57@gmail.com"
+            NAME = "usuario test"
+            loginFireStore(EMAIL)
+
+            //mock Client
+//            EMAIL= "kevinmaggio5@gmail.com"
 //            NAME = "usuario test"
 //            loginFireStore(EMAIL)
-//
-            //mock Client
-           // EMAIL= "kevinmaggio5@gmail.com"
-            //NAME = "usuario test"
-           // loginFireStore(EMAIL)
 
         }
     }
