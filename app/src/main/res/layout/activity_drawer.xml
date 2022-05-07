@@ -30,7 +30,7 @@
             android:layout_gravity="center|bottom"
             android:background="@drawable/gradiel_botton_red"
             android:layout_marginBottom="20dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:text="@string/bt_log_out_menu" />

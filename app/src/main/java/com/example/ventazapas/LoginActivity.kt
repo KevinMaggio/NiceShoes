@@ -31,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btLogin.setOnClickListener {
+
            loginToGoogle()
 
             //mock Admin

@@ -11,6 +11,7 @@ import com.example.ventazapas.data.fireStore.FireStoreImp
 import com.example.ventazapas.databinding.FragmentDetailsShoesBinding
 import com.example.ventazapas.ui.adapter.ShoesDetailsAdapter
 import android.graphics.Paint
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import com.example.ventazapas.AppNiceShoes.Companion.preferences
 import com.example.ventazapas.R
@@ -21,6 +22,7 @@ class DetailsShoesFragment : Fragment() {
 
     private val prueba1 = FireStoreImp()
     private lateinit var binding: FragmentDetailsShoesBinding
+
     var condition = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,39 +54,44 @@ class DetailsShoesFragment : Fragment() {
 
         prueba1.getShoesById(getBundle()).observe(viewLifecycleOwner) {
 
-            if (it.state_offer) {
-                initRecyclerView(it.image)
-                binding.tvGender.text = it.gender
-                binding.tvName.text = it.name
-                binding.tvOldPrice.text = "$ ${it.price}"
-                binding.tvOldPrice.isVisible = true
-                binding.tvPrice.text = "$${it.offer_price}"
-                binding.tvMoney.text = "${it.discount_rate}%"
-                binding.tvDetails.text = it.description
-                binding.tvColor.text = it.color
-                binding.tvGender.text = it.gender
-                binding.tvType.text = it.group
-                binding.tvWaist.text = "T: ${it.waist}"
 
-                binding.tvOldPrice.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
-            } else {
-                initRecyclerView(it.image)
-                binding.tvName.text = it.name
-                binding.tvPrice.text = "$ ${it.price}"
-                binding.tvOldPrice.isVisible = false
-                binding.tvMoney.isVisible = false
-                binding.tvNameOldPrice.isVisible = false
-                binding.tvDetails.text = it.description
-                binding.tvColor.text = it.color
-                binding.tvGender.text = it.gender
-                binding.tvType.text = it.group
-                binding.tvWaist.text = "T: ${it.waist}"
 
-            }
+                    if (it.state_offer) {
+                    initRecyclerView(it.image)
+                    binding.tvGender.text = it.gender
+                    binding.tvName.text = it.name
+                    binding.tvOldPrice.text = "$ ${it.price}"
+                    binding.tvOldPrice.isVisible = true
+                    binding.tvPrice.text = "$${it.offer_price}"
+                    binding.tvMoney.text = "${it.discount_rate}%"
+                    binding.tvDetails.text = it.description
+                    binding.tvColor.text = it.color
+                    binding.tvGender.text = it.gender
+                    binding.tvType.text = it.group
+                    binding.tvWaist.text = "T: ${it.waist}"
 
-            binding.btCancel.setOnClickListener {
-                findNavController().popBackStack()
-            }
+                    binding.tvOldPrice.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
+
+
+                } else {
+                    initRecyclerView(it.image)
+                    binding.tvName.text = it.name
+                    binding.tvPrice.text = "$ ${it.price}"
+                    binding.tvOldPrice.isVisible = false
+                    binding.tvMoney.isVisible = false
+                    binding.tvNameOldPrice.isVisible = false
+                    binding.tvDetails.text = it.description
+                    binding.tvColor.text = it.color
+                    binding.tvGender.text = it.gender
+                    binding.tvType.text = it.group
+                    binding.tvWaist.text = "T: ${it.waist}"
+
+                }
+
+                binding.btCancel.setOnClickListener {
+                    findNavController().popBackStack()
+                }
+
         }
 
         return binding.root
@@ -98,6 +105,9 @@ class DetailsShoesFragment : Fragment() {
     private fun initRecyclerView(list: List<String>) {
         val adapter = ShoesDetailsAdapter(list)
         binding.rvImages.adapter = adapter
+        binding.rvImages.set3DItem(true)
+        binding.rvImages.setAlpha(true)
+        binding.rvImages.setInfinite(true)
     }
 
     fun animationIcon() {
